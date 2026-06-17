@@ -1,0 +1,42 @@
+{% macro titleLink(p) %}
+{%- if p.data.external %}<a href="{{ p.data.external }}" rel="noopener" target="_blank">{{ p.data.title }}<span class="ext" aria-hidden="true">&#8599;</span></a>
+{%- else %}<a href="{{ p.url }}">{{ p.data.title }}</a>{% endif %}
+{%- endmacro %}
+
+{# type marker: solid colour circle + icon glyph, keyed to item type #}
+{% macro marker(type) %}
+{%- set raw = (type or "note") | lower -%}
+{%- set hue = {keynote:"keynote",workshop:"workshop",invited:"talk",talk:"talk",note:"note",essay:"essay",oped:"oped",blog:"blog",project:"project",topic:"topic",album:"album",book:"book",movie:"movie",seedling:"seedling",budding:"budding",evergreen:"evergreen"} -%}
+{%- set icons = {keynote:"ph:megaphone",workshop:"ph:wrench",invited:"ph:microphone-stage",talk:"ph:microphone-stage",note:"ph:note",essay:"ph:pen-nib",oped:"ph:newspaper",blog:"ph:pencil-simple",project:"ph:cube",topic:"ph:hash",album:"ph:music-notes",book:"ph:book",movie:"ph:film-slate",seedling:"ph:plant",budding:"ph:leaf",evergreen:"ph:tree"} -%}
+{%- set ico = icons[raw] or "ph:note" -%}
+<span class="tmark t-{{ hue[raw] or 'note' }}" role="img" aria-label="{{ raw }}">{% icon ico, "tmark-ico" %}</span>
+{%- endmacro %}
+
+{% macro row(p, badge=false, compact=false) %}
+{%- set ptype = (p.data.talktype or p.data.type or "note") | lower | replace("invited talk","invited") | replace("invited lecture","invited") | replace("invited seminar","invited") -%}
+{%- if not p.data.talktype -%}
+  {%- if "/notes/" in (p.inputPath or "") %}{% set ptype = "note" %}
+  {%- elif "/essays/" in (p.inputPath or "") %}{% set ptype = "essay" %}
+  {%- elif "/opeds/" in (p.inputPath or "") %}{% set ptype = "oped" %}
+  {%- elif "/talks/" in (p.inputPath or "") %}{% set ptype = "talk" %}
+  {%- elif "/projects/" in (p.inputPath or "") %}{% set ptype = "project" %}
+  {%- elif "/blog/" in (p.inputPath or "") %}{% set ptype = "blog" %}
+  {%- elif "/music/" in (p.inputPath or "") %}{% set ptype = "album" %}
+  {%- elif "/books/" in (p.inputPath or "") %}{% set ptype = "book" %}
+  {%- elif "/movies/" in (p.inputPath or "") %}{% set ptype = "movie" %}
+  {%- endif %}
+{%- endif %}
+<article class="entry{% if compact %} entry-compact{% endif %}" data-type="{{ ptype }}" data-tags="{{ (p.data.tags or []) | join(',') | lower }}">
+  {{ marker(p.data.maturity or ptype) }}
+  <div class="entry-main">
+    <h3 class="entry-title">{{ titleLink(p) }}</h3>
+    <p class="entry-meta">
+      <span class="entry-date">{{ p.date | isoDate }}</span>
+      {%- if p.data.favorite %}<span class="fav-star" title="Favorito" aria-label="Favorito">&starf;</span>{% endif %}
+      {%- if badge %}{%- set typeLabels = {note:"Nota",essay:"Ensaio",oped:"Op-ed",blog:"Post",post:"Post",album:"Álbum",book:"Livro",movie:"Filme",project:"Projeto",keynote:"Keynote",workshop:"Workshop",talk:"Palestra",invited:"Convidada",seedling:"Esboço",budding:"A crescer",evergreen:"Consolidada"} -%}<span class="entry-type">{{ typeLabels[(p.data.maturity or ptype) | lower] or (p.data.talktype or p.data.type or p.data.maturity) }}</span>{% endif %}
+      {%- if not compact and p.data.venue %}<span class="entry-venue">{{ p.data.venue }}{% if p.data.location %} &middot; {{ p.data.location }}{% endif %}</span>{% endif %}
+    </p>
+    {%- if not compact and p.data.description %}<p class="entry-desc">{{ p.data.description | truncate(130) }}</p>{% endif %}
+  </div>
+</article>
+{% endmacro %}

@@ -1,0 +1,101 @@
+// Zettelkasten — scoped under .zettel, mapped to the site palette.
+// (Ported from the standalone repo's style.css; globals/reset/typography
+// dropped — the site shell provides those.)
+.zettel {
+  // vars the graph JS reads as SVG attrs (keeps grafo.js/mini-grafo.js verbatim)
+  --border: var(--line);
+  --text-muted: var(--dim);
+  --bg-alt: color-mix(in srgb, var(--fg) 4%, var(--bg));
+
+  // maturity hues (light/dark agnostic enough for badge borders)
+  --maturity-seedling: #6f8f2e;
+  --maturity-budding: #b8860b;
+  --maturity-evergreen: #1f7a4d;
+
+  // ── toolbar + legend + tag cloud ──────────────────────────────────────────
+  .zettel-toolbar { display: flex; flex-wrap: wrap; gap: calc(var(--unit) * 3); font-family: $mono; font-size: .8rem; margin: calc(var(--unit) * 3) 0 calc(var(--unit) * 4); }
+  .zettel-toolbar a { color: var(--accent); text-decoration: none; }
+  .zettel-toolbar a:hover { text-decoration: underline; }
+
+  .maturity-legend { font-size: .82rem; color: var(--dim); margin: 0 0 calc(var(--unit) * 4); line-height: 2; }
+  .maturity-legend .maturity { margin-right: .15em; }
+
+  .zettel-tags { margin: 0 0 calc(var(--unit) * 5); padding-bottom: calc(var(--unit) * 4); border-bottom: 1px solid var(--line); }
+  .zettel-tags-label { font-family: $mono; font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--dim); margin: 0 0 calc(var(--unit) * 1.5); }
+  .zettel-tagcloud { display: flex; flex-wrap: wrap; align-items: baseline; gap: calc(var(--unit) * .75) calc(var(--unit) * 1.5); }
+
+  // ── maturity badge + tags ─────────────────────────────────────────────────
+  .maturity { display: inline-block; font-family: $mono; font-size: .64rem; text-transform: uppercase; letter-spacing: .05em; padding: .15em .5em; border-radius: 3px; border: 1px solid; line-height: 1.3; vertical-align: middle; }
+  .maturity-seedling { color: var(--maturity-seedling); border-color: var(--maturity-seedling); }
+  .maturity-budding { color: var(--maturity-budding); border-color: var(--maturity-budding); }
+  .maturity-evergreen { color: var(--maturity-evergreen); border-color: var(--maturity-evergreen); }
+
+  // quiet, weighted cloud: no borders, size carries frequency (inline style)
+  .tag { display: inline-flex; align-items: baseline; gap: .22em; font-family: $mono; font-size: .78rem; letter-spacing: .01em; color: var(--dim); text-decoration: none; line-height: 1.25; transition: color var(--dur) var(--ease); }
+  .tag .tag-name { border-bottom: 1px solid transparent; transition: border-color var(--dur) var(--ease); }
+  .tag:hover { color: var(--accent); }
+  .tag:hover .tag-name { border-bottom-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+  .tag-count { font-size: .6em; opacity: .45; font-variant-numeric: tabular-nums; }
+  .tag-more { color: var(--accent); align-self: center; }
+
+  // ── note page ─────────────────────────────────────────────────────────────
+  &.zettel-note { max-width: none; }
+  // body + sidebar (links / backlinks / vizinhança) — spans the full page width
+  .note-grid { display: grid; grid-template-columns: minmax(0, var(--measure)) 1fr; gap: calc(var(--unit) * 9); align-items: start; margin-top: calc(var(--unit) * 4); }
+  .note-main { min-width: 0; }
+  .note-side { min-width: 0; font-size: .9rem; }
+  .note-side > section + section { margin-top: calc(var(--unit) * 4); }
+  @media (max-width: 860px) { .note-grid { grid-template-columns: 1fr; gap: calc(var(--unit) * 5); } }
+  .zettel-breadcrumb { font-family: $mono; font-size: .8rem; margin-bottom: calc(var(--unit) * 3); }
+  .zettel-breadcrumb a { color: var(--dim); text-decoration: none; }
+  .zettel-breadcrumb a:hover { color: var(--accent); }
+  .zettel-note-header h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 calc(var(--unit) * 1.5); }
+  .zettel-note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--unit) * 1.25); font-family: $mono; font-size: .78rem; color: var(--dim); margin-bottom: calc(var(--unit) * 4); }
+
+  // prose (self-sufficient so notes read well regardless of site prose scope)
+  .zettel-note-body { font-size: 1.02rem; line-height: 1.7; }
+  .zettel-note-body > :first-child { margin-top: 0; }
+  .zettel-note-body h2 { font-size: 1.3rem; font-weight: 600; margin: calc(var(--unit) * 4) 0 calc(var(--unit) * 1.5); }
+  .zettel-note-body h3 { font-size: 1.1rem; font-weight: 600; margin: calc(var(--unit) * 3) 0 calc(var(--unit) * 1); }
+  .zettel-note-body p { margin: 0 0 calc(var(--unit) * 2); }
+  .zettel-note-body ul, .zettel-note-body ol { margin: 0 0 calc(var(--unit) * 2); padding-left: 1.4rem; }
+  .zettel-note-body li { margin: .25rem 0; }
+  .zettel-note-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .zettel-note-body code { font-family: $mono; font-size: .88em; background: var(--faint); padding: .12em .35em; border-radius: 3px; }
+  .zettel-note-body pre { background: var(--bg-alt); padding: calc(var(--unit) * 2); border-radius: 6px; overflow-x: auto; margin: 0 0 calc(var(--unit) * 2); }
+  .zettel-note-body pre code { background: none; padding: 0; }
+  .zettel-note-body blockquote { border-left: 3px solid var(--accent); padding-left: calc(var(--unit) * 2); margin: calc(var(--unit) * 2) 0; color: var(--dim); font-style: italic; }
+  .zettel-note-body table { border-collapse: collapse; width: 100%; font-size: .92rem; margin: 0 0 calc(var(--unit) * 2); }
+  .zettel-note-body th, .zettel-note-body td { border: 1px solid var(--line); padding: .4em .6em; text-align: left; vertical-align: top; }
+  .zettel-note-body hr { border: 0; border-top: 1px solid var(--line); margin: calc(var(--unit) * 3) 0; }
+  .zettel-note-body img { max-width: 100%; border-radius: 6px; }
+
+  // ── sidebar: links + backlinks + mini graph (minimal, no row rules) ────────
+  .note-side h2 { font-family: $mono; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); font-weight: 500; margin: 0 0 calc(var(--unit) * 1.5); }
+  .zettel-link-list { list-style: none; margin: 0; padding: 0; }
+  .zettel-link-list li { margin: 0; }
+  .zettel-link-list a { display: flex; align-items: baseline; gap: calc(var(--unit) * 1.25); padding: calc(var(--unit) * .75) 0; color: var(--fg); text-decoration: none; line-height: 1.35; }
+  .zettel-link-list a:hover { color: var(--accent); }
+  // direction glyph: -> outgoing, <- backlink; tinted by the target's maturity
+  .zettel-link-list .lnk-dir { flex: 0 0 auto; font-family: $mono; font-size: .82rem; color: var(--dim); }
+  .zettel-link-list .lnk-dir.maturity-seedling { color: var(--maturity-seedling); }
+  .zettel-link-list .lnk-dir.maturity-budding { color: var(--maturity-budding); }
+  .zettel-link-list .lnk-dir.maturity-evergreen { color: var(--maturity-evergreen); }
+
+  .mini-grafo { width: 100%; height: 240px; background: var(--bg-alt); border-radius: 6px; }
+  .mini-grafo svg { width: 100%; height: 100%; }
+
+  // ── full graph page ───────────────────────────────────────────────────────
+  .grafo-intro { font-size: .92rem; color: var(--dim); max-width: 40rem; margin: 0 0 calc(var(--unit) * 2); }
+  .grafo-legend { display: flex; flex-wrap: wrap; gap: calc(var(--unit) * 2) calc(var(--unit) * 4); align-items: center; margin: 0 0 calc(var(--unit) * 2); padding: calc(var(--unit) * 1.5) 0; font-family: $mono; font-size: .72rem; color: var(--dim); }
+  .grafo-legend-group { display: flex; align-items: center; gap: calc(var(--unit) * 1.5); }
+  .grafo-legend-k { text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; color: var(--dim); opacity: .7; }
+  .grafo-legend-item { display: inline-flex; align-items: center; gap: .45em; }
+  .grafo-dot { display: inline-block; width: .7em; height: .7em; border-radius: 50%; background: var(--dim); flex: 0 0 auto; }
+  .grafo-dot-sm { width: .45em; height: .45em; }
+  .grafo-dot-lg { width: .85em; height: .85em; margin-left: -.15em; }
+  .grafo-canvas { position: relative; margin-top: calc(var(--unit) * 2); }
+  #grafo-svg { width: 100%; min-height: 70vh; background: var(--bg-alt); border-radius: 6px; }
+  .grafo-tooltip { position: absolute; pointer-events: none; background: var(--bg); color: var(--fg); padding: .5rem .75rem; border-radius: 4px; border: 1px solid var(--line); font-size: .82rem; opacity: 0; transition: opacity .15s; z-index: 10; max-width: 300px; }
+  .grafo-tooltip.visible { opacity: 1; }
+}

@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+pagefind: false
+pagination:
+  data: collections.zettelTags
+  size: 1
+  alias: tagData
+permalink: "/tags/{{ tagData.tag }}/"
+eleventyComputed:
+  title: "Tag: {{ tagData.tag }} — Atlas"
+---
+{% import "partials/ledger.njk" as ledger %}
+<header class="page-header">
+  <h1 class="title">{{ tagData.tag }}</h1>
+  <p class="lede">{{ tagData.count }} {{ "nota" if tagData.count == 1 else "notas" }} com esta tag. <a href="/">Todas as notas</a></p>
+</header>
+
+<div class="zettel">
+  <div class="zettel-feed">
+    {% for n in tagData.items %}{{ ledger.row(n, true, true) }}{% endfor %}
+  </div>
+</div>

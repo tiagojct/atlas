@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ lang or site.lang }}"{% if accent or bg %} style="{% if accent %}--accent:{{ accent }};{% endif %}{% if bg %}--bg:{{ bg }};{% endif %}"{% endif %}>
+<script>try{var s=localStorage.getItem('theme');if(s?s==='dark':matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.classList.add('dark')}catch(e){}</script>
+<head>
+  {% include "partials/head.njk" %}
+</head>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+  <div class="site">
+    {% include "partials/masthead.njk" %}
+    <main{% if pagefind %} data-pagefind-body{% endif %}>
+      {{ content | safe }}
+    </main>
+    {% include "partials/footer.njk" %}
+  </div>
+  {% include "partials/search.njk" %}
+  <script src="/assets/js/theme.js" defer></script>
+  {% if mermaid %}
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral' });
+  </script>
+  {% endif %}
+</body>
+</html>

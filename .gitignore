@@ -1,0 +1,14 @@
+/.quarto/
+**/*.quarto_ipynb
+site/
+_site/
+.DS_Store
+.ruff_cache/
+
+# Eleventy
+/node_modules/
+/dist/
+.cache/
+
+# Obsidian vault config (src/zettel/ can be opened as a vault)
+.obsidian/

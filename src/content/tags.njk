@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+permalink: /tags/
+pagefind: false
+title: "Tags"
+description: "As tags que atravessam o Atlas — todas as notas atómicas por tema."
+---
+<header class="page-header">
+  <h1 class="title">Tags</h1>
+  <p class="lede">As tags que atravessam o Atlas. Segue uma para ver as notas que partilham um tema. <a href="/">Todas as notas</a></p>
+</header>
+
+{%- set byCount = collections.zettelTags | sort(true, false, "count") %}
+{%- if byCount.length %}
+  {%- set maxCount = byCount[0].count %}
+  <nav class="tag-cloud" aria-label="Nuvem de tags">
+    {%- for t in byCount %}
+    {%- set ratio = t.count / maxCount %}
+    <a class="tag-pill{% if ratio > 0.5 %} tag-pill--lg{% elif ratio > 0.2 %} tag-pill--md{% endif %}" href="/tags/{{ t.tag }}/">{{ t.tag }}{% if ratio > 0.3 %} <span style="opacity:.45;font-size:.75em">{{ t.count }}</span>{% endif %}</a>
+    {%- endfor %}
+  </nav>
+
+  {%- set groups = collections.zettelTags | groupByLetterZettel %}
+  <nav class="tag-quicknav" aria-label="Salto rápido">
+    {%- for g in groups %}<a href="#tag-{{ g.letter }}">{{ g.letter }}</a>{%- endfor %}
+  </nav>
+
+  <div class="tag-alpha">
+    {%- for g in groups %}
+    <div id="tag-{{ g.letter }}" class="tag-group-wrap">
+      <h3 class="tag-letter">{{ g.letter }}</h3>
+      <div class="tag-group">
+        {%- for t in g.items %}
+        <a class="topic-row" href="/tags/{{ t.tag }}/" style="--w:{{ (t.count / maxCount) | round(2) }}">
+          <span class="topic-heat" aria-hidden="true"></span>
+          <span class="topic-name">{{ t.tag }}</span>
+          <span class="topic-count">{{ t.count }}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+{%- else %}
+  <p class="empty-state">Ainda sem tags.</p>
+{%- endif %}

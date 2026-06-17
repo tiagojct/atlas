@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+permalink: /mapa/
+title: "Mapa — Atlas"
+description: "Um mapa visual de todas as notas e ligações do Atlas."
+pagefind: false
+---
+<header class="page-header">
+  <h1 class="title">Mapa</h1>
+  <p class="lede">Cada ponto é uma nota, dimensionada pelo número de ligações; a cor indica a maturidade. Arrasta para explorar, clica para abrir. <a href="/">Todas as notas</a></p>
+</header>
+
+<div class="zettel">
+  {% include "partials/grafo-legend.njk" %}
+  <section class="grafo-canvas">
+    <svg id="grafo-svg"></svg>
+    <div id="grafo-tooltip" class="grafo-tooltip" aria-hidden="true"></div>
+  </section>
+</div>
+
+<script type="application/json" id="grafo-data">{{ zettelGrafo | dump | safe }}</script>
+<script>window.ZETTEL_BASE = "";</script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+<script src="/assets/js/zettel/grafo.js" defer></script>

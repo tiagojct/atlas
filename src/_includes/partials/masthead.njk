@@ -1,0 +1,16 @@
+<header class="masthead">
+  <div class="masthead-bar">
+    <nav class="masthead-sections" aria-label="Atlas">
+      <a class="wordmark" href="/" aria-label="Atlas"><span class="bullet" aria-hidden="true"></span><span>Atlas</span></a>
+    </nav>
+    <div class="masthead-tools">
+      <button id="search-toggle" class="icon-btn" aria-label="Pesquisar (carrega /)">{% icon "ph:magnifying-glass" %}</button>
+      <button id="theme-toggle" class="icon-btn" aria-label="Alternar modo escuro">{% icon "ph:moon" %}</button>
+    </div>
+  </div>
+  <nav class="masthead-subnav" aria-label="Navegação">
+    {%- for c in site.nav %}
+    <a href="{{ c.url }}"{% if page.url == c.url %} aria-current="page"{% endif %}>{{ c.text }}</a>
+    {%- endfor %}
+  </nav>
+</header>

@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+permalink: /
+lang: pt-PT
+title: "Atlas"
+description: "Um caderno público: notas atómicas que se ligam entre si, cultivadas ao longo do tempo."
+pagefind: false
+---
+{% import "partials/ledger.njk" as ledger %}
+<header class="page-header">
+  <h1 class="title">Atlas</h1>
+  <p class="lede">Um caderno público: {{ collections.zettelNotes.length }} notas atómicas que se ligam entre si. Cada nota tem um identificador único (<code>AAAAMMDDHHmmss</code>) e encontra-se seguindo ligações, tags, ou o mapa.</p>
+</header>
+
+<div class="zettel">
+
+  <p class="maturity-legend">
+    <span class="maturity maturity-seedling">esboço</span> em bruto &middot;
+    <span class="maturity maturity-budding">a crescer</span> a tomar forma &middot;
+    <span class="maturity maturity-evergreen">consolidada</span> madura, revista
+  </p>
+
+  {% if collections.zettelTags.length %}
+  {%- set tagsByCount = collections.zettelTags | sort(true, false, "count") %}
+  {%- set topTags = tagsByCount | head(18) %}
+  {%- set maxCount = tagsByCount[0].count %}
+  <div class="zettel-tags">
+    <p class="zettel-tags-label">Tags mais usadas</p>
+    <div class="zettel-tagcloud">
+      {%- for t in topTags %}
+      <a href="/tags/{{ t.tag }}/" class="tag" style="font-size:{{ (0.8 + (t.count / maxCount) * 0.45) | round(2) }}rem"><span class="tag-name">{{ t.tag }}</span><span class="tag-count">{{ t.count }}</span></a>
+      {%- endfor %}
+      {%- if tagsByCount.length > 18 %}<a href="/tags/" class="tag tag-more">+{{ tagsByCount.length - 18 }} mais &rarr;</a>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  {%- set ever = [] %}{% set bud = [] %}{% set seed = [] %}
+  {%- for n in collections.zettelNotes %}
+    {%- if n.data.maturity == "evergreen" %}{% set _ = ever.push(n) %}
+    {%- elif n.data.maturity == "budding" %}{% set _ = bud.push(n) %}
+    {%- else %}{% set _ = seed.push(n) %}{% endif %}
+  {%- endfor %}
+  {%- set ordered = (ever | sort(true, false, "date")).concat(bud | sort(true, false, "date")).concat(seed | sort(true, false, "date")) %}
+  <div class="zettel-feed">
+    {% for n in ordered %}{{ ledger.row(n, true, true) }}{% endfor %}
+  </div>
+
+  <section class="grafo-section" aria-labelledby="grafo-h">
+    <h2 id="grafo-h" class="grafo-head">O mapa completo</h2>
+    <p class="grafo-intro">Cada ponto é uma nota; as linhas são ligações entre elas. A cor mostra a maturidade, o tamanho mostra quantas ligações a nota tem. Arrasta para explorar, clica para abrir. <a href="/mapa/">Abrir o mapa em página inteira</a>.</p>
+    {% include "partials/grafo-legend.njk" %}
+    <div class="grafo-canvas">
+      <svg id="grafo-svg"></svg>
+      <div id="grafo-tooltip" class="grafo-tooltip" aria-hidden="true"></div>
+    </div>
+  </section>
+</div>
+
+<script type="application/json" id="grafo-data">{{ zettelGrafo | dump | safe }}</script>
+<script>window.ZETTEL_BASE = "";</script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+<script src="/assets/js/zettel/grafo.js" defer></script>

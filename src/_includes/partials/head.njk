@@ -1,0 +1,47 @@
+{%- set pageTitle = title and (title + " | " + site.title) or site.title -%}
+{%- set desc = description or site.description -%}
+{%- set ogRaw = cover or (image and (image if (image.startsWith("/") or image.startsWith("http")) else (page.url + image))) or site.ogImage -%}
+{%- set ogImg = ogRaw if ogRaw.startsWith("http") else (site.url + ogRaw) -%}
+{%- set isArticle = layout in ["layouts/article.njk", "layouts/project.njk", "layouts/album.njk", "layouts/book.njk"] -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16110b" media="(prefers-color-scheme: dark)">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ desc }}">
+<link rel="canonical" href="{{ canonicalUrl or (site.url + page.url) }}">{# op-ed stubs point canonical at the external original #}
+<link rel="icon" type="image/svg+xml" href="{{ site.favicon }}">
+
+<meta property="og:type" content="{{ 'article' if isArticle else 'website' }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:image" content="{{ ogImg }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'pt_PT' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="{{ site.twitterCreator }}">
+
+<link rel="me" href="{{ site.mastodon }}">
+<meta name="fediverse:creator" content="@tiagojct@mastodon.social">
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/InterVariable.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/IBMPlexMono-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/main.css?v={{ assetv }}">
+
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Tiago Jacinto","url":"https://tiagojct.eu","jobTitle":"Assistant Professor","worksFor":{"@type":"Organization","name":"Faculty of Medicine, University of Porto","alternateName":"FMUP","url":"https://www.med.up.pt/"},"affiliation":[{"@type":"Organization","name":"Faculty of Medicine, University of Porto","alternateName":"FMUP","url":"https://www.med.up.pt/"},{"@type":"Organization","name":"RISE-Health","url":"https://www.rise-health.pt/"}],"knowsAbout":["Health Informatics","Digital Health","Artificial Intelligence in Healthcare","Clinical Decision Support Systems","Mobile Health"],"sameAs":["https://orcid.org/0000-0002-7897-1101","https://scholar.google.com/citations?user=BXZkfm8AAAAJ","https://github.com/tiagojct","https://mastodon.social/@tiagojct"]}
+</script>
+{% endif %}
+{%- if layout == "layouts/article.njk" and date %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":{{ title | dump | safe }},"description":{{ desc | dump | safe }},"url":"{{ site.url }}{{ page.url }}","datePublished":"{{ date | isoDate }}"{% if dateModified %},"dateModified":"{{ dateModified | isoDate }}"{% endif %},"image":"{{ ogImg }}"{% if tags %},"keywords":{{ tags | dump | safe }}{% endif %},"author":{"@type":"Person","name":{{ site.author.name | dump | safe }},"url":"{{ site.url }}"},"publisher":{"@type":"Person","name":{{ site.author.name | dump | safe }}}}
+</script>
+{%- elif layout == "layouts/project.njk" %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CreativeWork","name":{{ title | dump | safe }},"description":{{ desc | dump | safe }},"url":"{{ site.url }}{{ page.url }}"{% if date %},"dateCreated":"{{ date | isoDate }}"{% endif %},"image":"{{ ogImg }}"{% if tags %},"keywords":{{ tags | dump | safe }}{% endif %},"author":{"@type":"Person","name":{{ site.author.name | dump | safe }},"url":"{{ site.url }}"}}
+</script>
+{%- endif %}
+{% if css %}<link rel="stylesheet" href="{{ page.url }}{{ css }}">{% endif %}
+{% if eleventy.env.runMode == "build" %}<script defer src="https://umami.tiagojct.eu/script.js" data-website-id="2a266113-ec3f-430e-be5c-4ca91b667142"></script>{% endif %}

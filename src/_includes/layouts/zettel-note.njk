@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+bodyClass: reading
+---
+{%- set maturityLabels = {seedling:"esboço",budding:"a crescer",evergreen:"consolidada"} %}
+<article class="zettel zettel-note">
+  <nav class="zettel-breadcrumb"><a href="/">&larr; todas as notas</a></nav>
+
+  <header class="zettel-note-header">
+    <h1>{{ title }}</h1>
+    <div class="zettel-note-meta">
+      {% if date %}<time datetime="{{ date | isoDate }}">{{ date | zettelDate }}</time>{% endif %}
+      <span class="maturity maturity-{{ maturity }}">{{ maturityLabels[maturity] or maturity }}</span>
+      {% for tag in tags %}<a href="/tags/{{ tag }}/" class="tag">{{ tag }}</a>{% endfor %}
+    </div>
+  </header>
+
+  <div class="note-grid">
+    <div class="note-main">
+      <div class="zettel-note-body">{{ content | safe }}</div>
+    </div>
+
+    <aside class="note-side">
+      {% if linkedNotes.length %}
+      <section class="zettel-links">
+        <h2>Ligações</h2>
+        <ul class="zettel-link-list">
+          {% for n in linkedNotes %}<li><a href="/{{ n.id }}/"><span class="lnk-dir maturity-{{ n.maturity }}" title="liga a" aria-hidden="true">&rarr;</span>{{ n.title }}</a></li>{% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if backlinks.length %}
+      <section class="zettel-backlinks">
+        <h2>Notas que ligam aqui</h2>
+        <ul class="zettel-link-list">
+          {% for bl in backlinks %}<li><a href="/{{ bl.id }}/"><span class="lnk-dir maturity-{{ bl.maturity }}" title="ligada aqui" aria-hidden="true">&larr;</span>{{ bl.title }}</a></li>{% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      <section class="zettel-mini-grafo">
+        <h2>Vizinhança</h2>
+        <div id="mini-grafo-container" class="mini-grafo"></div>
+      </section>
+    </aside>
+  </div>
+
+  <script type="application/json" id="mini-grafo-data">
+  {
+    "center": { "id": "{{ id }}", "title": {{ title | dump | safe }}, "maturity": "{{ maturity }}", "tags": {{ tags | dump | safe }} },
+    "linked": [{% for n in linkedNotes %}{"id": "{{ n.id }}", "title": {{ n.title | dump | safe }}, "maturity": "{{ n.maturity }}"}{% if not loop.last %},{% endif %}{% endfor %}],
+    "backlinks": [{% for bl in backlinks %}{"id": "{{ bl.id }}", "title": {{ bl.title | dump | safe }}, "maturity": "{{ bl.maturity }}"}{% if not loop.last %},{% endif %}{% endfor %}]
+  }
+  </script>
+  <script>window.ZETTEL_BASE = "";</script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+  <script src="/assets/js/zettel/mini-grafo.js" defer></script>
+</article>
