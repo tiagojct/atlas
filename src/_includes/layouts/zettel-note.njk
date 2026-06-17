@@ -53,7 +53,7 @@ bodyClass: reading
     "backlinks": [{% for bl in backlinks %}{"id": "{{ bl.id }}", "title": {{ bl.title | dump | safe }}, "maturity": "{{ bl.maturity }}"}{% if not loop.last %},{% endif %}{% endfor %}]
   }
   </script>
-  <script>window.ZETTEL_BASE = "";</script>
+  <script>window.ZETTEL_BASE = "/atlas";</script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
   <script src="/assets/js/zettel/mini-grafo.js" defer></script>
 </article>

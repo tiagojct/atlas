@@ -1,6 +1,6 @@
 export default {
   title: "Atlas",
-  url: "https://atlas.tiagojct.eu",
+  url: "https://tiagojct.eu/atlas",
   lang: "pt-PT",
   description:
     "Um jardim digital de notas atómicas que se ligam entre si — um Zettelkasten público, cultivado ao longo do tempo.",

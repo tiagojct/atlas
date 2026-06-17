@@ -8,6 +8,7 @@ import mdContainer from "markdown-it-container";
 import mdFootnote from "markdown-it-footnote";
 import mdSidenote from "markdown-it-sidenote";
 import Shiki from "@shikijs/markdown-it";
+import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 import { pequodLight, pequodDark } from "./lib/shiki-pequod.js";
 import { getIconData, iconToSVG, iconToHTML, replaceIDs } from "@iconify/utils";
 import faBrands from "@iconify-json/fa6-brands/icons.json" with { type: "json" };
@@ -125,6 +126,10 @@ export default async function (eleventyConfig) {
   // ── Build stats (page count, build time, duration) ──────────────────────
   eleventyConfig.addPlugin(buildStats);
 
+  // ── HTML base: rewrite root-relative href/src to the /atlas path prefix ────
+  // (served as a GitHub project page under tiagojct.eu/atlas)
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
   // ── Asset cache-busting ───────────────────────────────────────────────────
   const cssVersion = (() => {
     const h = createHash("md5");
@@ -137,7 +142,6 @@ export default async function (eleventyConfig) {
   eleventyConfig.addGlobalData("assetv", cssVersion);
 
   // ── Passthrough static assets ─────────────────────────────────────────────
-  eleventyConfig.addPassthroughCopy({ "src/CNAME": "CNAME" });
   if (existsSync("src/zettel/assets")) {
     eleventyConfig.addPassthroughCopy({ "src/zettel/assets": "assets" });
   }
@@ -215,6 +219,7 @@ export default async function (eleventyConfig) {
 
   return {
     dir: { input: "src", output: "dist", includes: "_includes", data: "_data" },
+    pathPrefix: "/atlas/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html", "scss"],
