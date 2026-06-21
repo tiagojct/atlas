@@ -9,30 +9,48 @@ pagefind: false
 {% import "partials/ledger.njk" as ledger %}
 <header class="page-header">
   <h1 class="title">Atlas</h1>
-  <p class="lede">Um caderno público: {{ collections.zettelNotes.length }} notas atómicas que se ligam entre si. Cada nota tem um identificador único (<code>AAAAMMDDHHmmss</code>) e encontra-se seguindo ligações, tags, ou o mapa.</p>
+  <p class="lede">Um caderno público: {{ collections.zettelNotes.length }} notas atómicas que se ligam entre si. Segue o <a href="/mapa/">mapa</a>, as <a href="/tags/">tags</a>, ou começa pelas notas centrais. <a href="/sobre/">Sobre este jardim &rarr;</a></p>
 </header>
 
 <div class="zettel">
 
-  <p class="maturity-legend">
-    <span class="maturity maturity-seedling">esboço</span> em bruto &middot;
-    <span class="maturity maturity-budding">a crescer</span> a tomar forma &middot;
-    <span class="maturity maturity-evergreen">consolidada</span> madura, revista
-  </p>
+  <section class="grafo-hero" aria-label="Mapa de todas as notas">
+    <p class="section-eyebrow">Mapa</p>
+    <div class="grafo-canvas">
+      <svg id="grafo-svg"></svg>
+      <div id="grafo-tooltip" class="grafo-tooltip" aria-hidden="true"></div>
+    </div>
+    <div class="grafo-foot">
+      {% include "partials/grafo-legend.njk" %}
+      <a class="grafo-fulllink" href="/mapa/">Mapa em página inteira &rarr;</a>
+    </div>
+  </section>
+
+  {%- set central = zettelGrafo.nodes | sort(true, false, "score") | head(4) %}
+  {%- if central.length and central[0].score > 0 %}
+  <section class="home-start" aria-label="Por onde começar">
+    <p class="section-eyebrow">Por onde começar</p>
+    <ul class="start-grid">
+      {%- for n in central %}
+      <li><a href="/{{ n.id }}/" class="start-link">{{ n.title }}</a><span class="start-deg">{{ n.score }} ligações</span></li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
 
   {% if collections.zettelTags.length %}
   {%- set tagsByCount = collections.zettelTags | sort(true, false, "count") %}
   {%- set topTags = tagsByCount | head(18) %}
   {%- set maxCount = tagsByCount[0].count %}
-  <div class="zettel-tags">
-    <p class="zettel-tags-label">Tags mais usadas</p>
+  <section class="zettel-tags" aria-label="Tags">
+    <p class="section-eyebrow">Tags</p>
     <div class="zettel-tagcloud">
       {%- for t in topTags %}
       <a href="/tags/{{ t.tag }}/" class="tag" style="font-size:{{ (0.8 + (t.count / maxCount) * 0.45) | round(2) }}rem"><span class="tag-name">{{ t.tag }}</span><span class="tag-count">{{ t.count }}</span></a>
       {%- endfor %}
       {%- if tagsByCount.length > 18 %}<a href="/tags/" class="tag tag-more">+{{ tagsByCount.length - 18 }} mais &rarr;</a>{% endif %}
     </div>
-  </div>
+  </section>
   {% endif %}
 
   {%- set ever = [] %}{% set bud = [] %}{% set seed = [] %}
@@ -41,19 +59,26 @@ pagefind: false
     {%- elif n.data.maturity == "budding" %}{% set _ = bud.push(n) %}
     {%- else %}{% set _ = seed.push(n) %}{% endif %}
   {%- endfor %}
-  {%- set ordered = (ever | sort(true, false, "date")).concat(bud | sort(true, false, "date")).concat(seed | sort(true, false, "date")) %}
-  <div class="zettel-feed">
-    {% for n in ordered %}{{ ledger.row(n, true, true) }}{% endfor %}
-  </div>
+  {%- set everS = ever | sort(true, false, "date") %}
+  {%- set budS = bud | sort(true, false, "date") %}
+  {%- set seedS = seed | sort(true, false, "date") %}
+  <section class="home-all" aria-label="Todas as notas">
+    <p class="section-eyebrow">Todas as notas</p>
 
-  <section class="grafo-section" aria-labelledby="grafo-h">
-    <h2 id="grafo-h" class="grafo-head">O mapa completo</h2>
-    <p class="grafo-intro">Cada ponto é uma nota; as linhas são ligações entre elas. A cor mostra a maturidade, o tamanho mostra quantas ligações a nota tem. Arrasta para explorar, clica para abrir. <a href="/mapa/">Abrir o mapa em página inteira</a>.</p>
-    {% include "partials/grafo-legend.njk" %}
-    <div class="grafo-canvas">
-      <svg id="grafo-svg"></svg>
-      <div id="grafo-tooltip" class="grafo-tooltip" aria-hidden="true"></div>
-    </div>
+    {%- if everS.length %}
+    <h3 class="feed-head feed-head--evergreen">Consolidadas <span class="feed-count">{{ everS.length }}</span></h3>
+    <div class="zettel-feed">{% for n in everS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
+    {%- endif %}
+
+    {%- if budS.length %}
+    <h3 class="feed-head feed-head--budding">A crescer <span class="feed-count">{{ budS.length }}</span></h3>
+    <div class="zettel-feed">{% for n in budS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
+    {%- endif %}
+
+    {%- if seedS.length %}
+    <h3 class="feed-head feed-head--seedling">Esboços <span class="feed-count">{{ seedS.length }}</span></h3>
+    <div class="zettel-feed">{% for n in seedS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
+    {%- endif %}
   </section>
 </div>
 

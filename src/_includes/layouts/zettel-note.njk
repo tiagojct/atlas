@@ -19,36 +19,43 @@ bodyClass: reading
     <div class="note-main">
       <div class="zettel-note-body">{{ content | safe }}</div>
     </div>
-
     <aside class="note-side">
-      {% if linkedNotes.length %}
-      <section class="zettel-links">
-        <h2>Ligações</h2>
-        <ul class="zettel-link-list">
-          {% for n in linkedNotes %}<li><a href="/{{ n.id }}/"><span class="lnk-dir maturity-{{ n.maturity }}" title="liga a" aria-hidden="true">&rarr;</span>{{ n.title }}</a></li>{% endfor %}
-        </ul>
-      </section>
-      {% endif %}
-
-      {% if backlinks.length %}
-      <section class="zettel-backlinks">
-        <h2>Notas que ligam aqui</h2>
-        <ul class="zettel-link-list">
-          {% for bl in backlinks %}<li><a href="/{{ bl.id }}/"><span class="lnk-dir maturity-{{ bl.maturity }}" title="ligada aqui" aria-hidden="true">&larr;</span>{{ bl.title }}</a></li>{% endfor %}
-        </ul>
-      </section>
-      {% endif %}
-
-      <section class="zettel-mini-grafo">
-        <h2>Vizinhança</h2>
-        <div id="mini-grafo-container" class="mini-grafo"></div>
-      </section>
+      <div id="mini-grafo-container" class="mini-grafo"></div>
     </aside>
   </div>
 
+  {% if linkedNotes.length or backlinks.length or externalLinks.length %}
+  <section class="note-connections" aria-label="Ligações desta nota">
+    {% if linkedNotes.length %}
+    <div class="note-conn">
+      <h2><span class="conn-dir" aria-hidden="true">&rarr;</span> Liga a</h2>
+      <ul class="zettel-link-list">
+        {% for n in linkedNotes %}<li><a href="/{{ n.id }}/">{{ n.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if backlinks.length %}
+    <div class="note-conn">
+      <h2><span class="conn-dir" aria-hidden="true">&larr;</span> Ligada por</h2>
+      <ul class="zettel-link-list">
+        {% for bl in backlinks %}<li><a href="/{{ bl.id }}/">{{ bl.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if externalLinks.length %}
+    <div class="note-conn">
+      <h2>Continuar a explorar</h2>
+      <ul class="explore-list">
+        {% for x in externalLinks %}<li><a href="{{ x.url }}" rel="noopener" target="_blank">{{ x.label }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
   <script type="application/json" id="mini-grafo-data">
   {
-    "center": { "id": "{{ id }}", "title": {{ title | dump | safe }}, "maturity": "{{ maturity }}", "tags": {{ tags | dump | safe }} },
+    "center": { "id": "{{ slug }}", "title": {{ title | dump | safe }}, "maturity": "{{ maturity }}", "tags": {{ tags | dump | safe }} },
     "linked": [{% for n in linkedNotes %}{"id": "{{ n.id }}", "title": {{ n.title | dump | safe }}, "maturity": "{{ n.maturity }}"}{% if not loop.last %},{% endif %}{% endfor %}],
     "backlinks": [{% for bl in backlinks %}{"id": "{{ bl.id }}", "title": {{ bl.title | dump | safe }}, "maturity": "{{ bl.maturity }}"}{% if not loop.last %},{% endif %}{% endfor %}]
   }

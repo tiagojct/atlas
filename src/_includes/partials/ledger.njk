@@ -3,15 +3,6 @@
 {%- else %}<a href="{{ p.url }}">{{ p.data.title }}</a>{% endif %}
 {%- endmacro %}
 
-{# type marker: solid colour circle + icon glyph, keyed to item type #}
-{% macro marker(type) %}
-{%- set raw = (type or "note") | lower -%}
-{%- set hue = {keynote:"keynote",workshop:"workshop",invited:"talk",talk:"talk",note:"note",essay:"essay",oped:"oped",blog:"blog",project:"project",topic:"topic",album:"album",book:"book",movie:"movie",seedling:"seedling",budding:"budding",evergreen:"evergreen"} -%}
-{%- set icons = {keynote:"ph:megaphone",workshop:"ph:wrench",invited:"ph:microphone-stage",talk:"ph:microphone-stage",note:"ph:note",essay:"ph:pen-nib",oped:"ph:newspaper",blog:"ph:pencil-simple",project:"ph:cube",topic:"ph:hash",album:"ph:music-notes",book:"ph:book",movie:"ph:film-slate",seedling:"ph:plant",budding:"ph:leaf",evergreen:"ph:tree"} -%}
-{%- set ico = icons[raw] or "ph:note" -%}
-<span class="tmark t-{{ hue[raw] or 'note' }}" role="img" aria-label="{{ raw }}">{% icon ico, "tmark-ico" %}</span>
-{%- endmacro %}
-
 {% macro row(p, badge=false, compact=false) %}
 {%- set ptype = (p.data.talktype or p.data.type or "note") | lower | replace("invited talk","invited") | replace("invited lecture","invited") | replace("invited seminar","invited") -%}
 {%- if not p.data.talktype -%}
@@ -27,7 +18,6 @@
   {%- endif %}
 {%- endif %}
 <article class="entry{% if compact %} entry-compact{% endif %}" data-type="{{ ptype }}" data-tags="{{ (p.data.tags or []) | join(',') | lower }}">
-  {{ marker(p.data.maturity or ptype) }}
   <div class="entry-main">
     <h3 class="entry-title">{{ titleLink(p) }}</h3>
     <p class="entry-meta">

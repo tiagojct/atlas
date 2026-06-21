@@ -1,0 +1,39 @@
+---
+title: "Nick Bostrom — superinteligência"
+date: 2026-06-13
+tags:
+  - filosofia-da-tecnologia
+  - bostrom
+  - ia
+  - risco-existencial
+  - superinteligência
+draft: false
+maturity: seedling
+aliases:
+  - "Bostrom"
+  - "superinteligência"
+  - "risco existencial"
+  - "superintelligence"
+related:
+  - "Yuk Hui — cosmotécnica"
+---
+
+Em *Superintelligence: Paths, Dangers, Strategies* (2014), Nick Bostrom representa a agenda do **risco existencial** na filosofia da IA, articulando dois argumentos que se tornaram canónicos.
+
+## Tese da ortogonalidade
+
+O nível de inteligência e os fins últimos de um agente são **independentes**: praticamente qualquer nível de inteligência é compatível com praticamente qualquer objetivo final, por mais absurdo que seja.
+
+O exemplo célebre é o **maximizador de clipes de papel** (*paperclip maximizer*): uma IA superinteligente programada com o objetivo trivial de maximizar a produção de clipes poderia, na prossecução implacável desse fim, converter toda a matéria do planeta — incluindo os seres humanos — em clipes.
+
+## Tese da convergência instrumental
+
+Sejam quais forem os fins últimos, a maioria dos agentes suficientemente inteligentes convergirá para certos **objetivos instrumentais**: autopreservação, aquisição de recursos, integridade de objetivos. Alguns destes objetivos instrumentais podem ameaçar a humanidade.
+
+## Críticas
+
+As críticas filosóficas a Bostrom são numerosas:
+
+- A separação entre inteligência e fins é **incoerente**: uma inteligência verdadeiramente geral não perseguiria um fim trivial de modo autodestrutivo.
+- O cenário é **especulativo** e desvia recursos e atenção dos danos reais e presentes da IA (discriminação algorítmica, extração laboral, custos ambientais).
+- A própria *framing* do «risco existencial» pode servir os interesses das empresas que constroem estes sistemas, concentrando a autoridade em quem os desenvolve e desviando o debate da regulação e da justiça.

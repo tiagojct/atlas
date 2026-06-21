@@ -1,0 +1,35 @@
+---
+title: "Bruno Latour — teoria actor-rede"
+date: 2026-06-12
+tags:
+  - latour
+  - teoria-actor-rede
+  - cts
+  - agência
+draft: false
+maturity: seedling
+aliases:
+  - "Latour"
+  - "ANT"
+  - "actor-network theory"
+related:
+  - "Construção social da tecnologia"
+  - "Mediação tecnológica"
+  - "Peter-Paul Verbeek — mediação moral"
+  - "Donna Haraway — ciborgue e hibridez"
+---
+A teoria do ator-rede (ANT) de Bruno Latour desafia a ideia de que apenas os humanos agem. A agência está distribuída por redes de humanos e não-humanos.
+
+## Tese central
+
+> A ação é partilhada entre pessoas e coisas.
+
+Uma lombas de velocidade "age" ao fazer os condutores abrandar. Um fecho de porta "age" ao fechar a porta. Uma base de dados molda a memória institucional. Um algoritmo molda a visibilidade e a oportunidade. Latour não quer dizer que os objetos têm consciência — quer dizer que a agência está distribuída através de redes de humanos, dispositivos, regras, instituições e materiais.
+
+## Jamais Fomos Modernos
+
+O livro de Latour de 1991 argumenta que a modernidade fingiu separar a natureza da cultura, o objeto do sujeito, o facto do valor — mas na prática, os híbridos (buracos de ozono, organismos geneticamente modificados, plataformas digitais) proliferam por toda a parte. A separação sempre foi uma ficção.
+
+## Relevância para a tecnologia
+
+A ANT dissolve a linha nítida entre "utilizadores humanos" e "ferramentas passivas". As tecnologias são atores em redes — não porque tenham intenções, mas porque fazem diferença no curso da ação. A questão desloca-se de "o que significa esta ferramenta?" para "o que faz este ator nesta rede?"

@@ -34,7 +34,8 @@ export default function () {
   nodes.forEach((n) => {
     const t = n.tags[0] || "sem-tag";
     n.group = tagGroupMap[t];
-    n.radius = Math.max(4, Math.min(20, 5 + (n.degree + n.degreeIn) * 1.5));
+    n.score = n.degree + n.degreeIn; // connectedness — drives "por onde começar"
+    n.radius = Math.max(4, Math.min(20, 5 + n.score * 1.5));
   });
 
   return { nodes, links, tagGroups: Object.keys(tagGroupMap) };

@@ -1,0 +1,21 @@
+---
+title: "Corolário"
+date: 2026-05-24
+tags:
+  - epistemologia
+  - lógica
+  - filosofia
+draft: false
+maturity: seedling
+aliases:
+  - "Corollary"
+related:
+  - "Proposições — axiomas, teoremas e outras afirmações"
+---
+Uma consequência direta de um [[Teorema|teorema]]. A demonstração de um corolário é tipicamente muito curta porque o trabalho pesado já foi feito pelo teorema que o precede.
+
+A palavra vem do latim *corollarium*, «pequena grinalda» — uma coroa oferecida como bónus. O corolário é o bónus que acompanha o teorema: não exige esforço substancial, mas é um resultado genuíno.
+
+## Estrutura lógica
+
+Se *A* implica *B* (um teorema), e *B* implica *C* por um passo trivial, então *C* é um corolário de *A*.

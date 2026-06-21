@@ -9,7 +9,7 @@
   const svg = d3.select("#grafo-svg");
   const tooltip = d3.select("#grafo-tooltip");
 
-  const maturityPt = { seedling: "seedling", budding: "budding", evergreen: "evergreen" };
+  const maturityPt = { seedling: "esboço", budding: "a crescer", evergreen: "consolidada" };
 
   const container = svg.node().parentNode;
   const width = container.clientWidth;
@@ -19,14 +19,40 @@
 
   const g = svg.append("g");
 
-  // Colour by maturity (matches the site's maturity hues + the on-page legend);
-  // node size already encodes connectedness (radius scales with degree).
+  // Zoom + pan. Wheel zooms anywhere; drag pans empty space (node drag still works
+  // because the filter ignores drags that start on a circle).
+  const zoom = d3
+    .zoom()
+    .scaleExtent([0.35, 5])
+    .filter((event) => event.type === "wheel" || !event.target.closest("circle"))
+    .on("zoom", (event) => g.attr("transform", event.transform));
+  svg.call(zoom).style("cursor", "grab");
+
+  const controls = d3.select(container).append("div").attr("class", "grafo-controls");
+  const ctrl = (label, title, fn) =>
+    controls.append("button").attr("type", "button").attr("class", "grafo-ctrl")
+      .attr("aria-label", title).attr("title", title).text(label).on("click", fn);
+  ctrl("+", "Aproximar", () => svg.transition().duration(200).call(zoom.scaleBy, 1.4));
+  ctrl("−", "Afastar", () => svg.transition().duration(200).call(zoom.scaleBy, 1 / 1.4));
+  ctrl("↺", "Repor", () => svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity));
+
+  // Colour by maturity (muted hues, read from CSS vars so the graph tracks
+  // light/dark); the ink-blue accent is reserved for hover. Node size encodes
+  // connectedness (radius scales with degree).
+  const css = getComputedStyle(svg.node());
+  const cssVar = (name, fallback) => (css.getPropertyValue(name).trim() || fallback);
   const maturityColor = {
-    seedling: "#6f8f2e",
-    budding: "#b8860b",
-    evergreen: "#1f7a4d",
+    seedling: cssVar("--maturity-seedling", "#5f8a3f"),
+    budding: cssVar("--maturity-budding", "#b07d2b"),
+    evergreen: cssVar("--maturity-evergreen", "#2f6f6a"),
   };
-  const fillFor = (d) => maturityColor[d.maturity] || "#9a968e";
+  const accent = cssVar("--accent", "#2a3a6b");
+  const fillFor = (d) => maturityColor[d.maturity] || cssVar("--dim", "#9a968e");
+
+  // Only the most-connected notes are labelled by default (anchors); the rest
+  // reveal their label on hover — keeps a dense map readable instead of a hairball.
+  const deg = (d) => (d.degree || 0) + (d.degreeIn || 0);
+  [...nodes].sort((a, b) => deg(b) - deg(a)).slice(0, Math.min(8, nodes.length)).forEach((n) => { n._lab = true; });
 
   const simulation = d3
     .forceSimulation(nodes)
@@ -44,7 +70,7 @@
   const link = g
     .append("g")
     .attr("stroke", "var(--border, #3a3a32)")
-    .attr("stroke-opacity", 0.5)
+    .attr("stroke-opacity", 1)
     .attr("stroke-width", 1)
     .selectAll("line")
     .data(links)
@@ -70,7 +96,9 @@
       d3.select(this)
         .transition()
         .duration(150)
-        .attr("r", d.radius * 1.4);
+        .attr("r", d.radius * 1.4)
+        .attr("fill", accent);
+      label.filter((l) => l === d).attr("opacity", 1);
     })
     .on("mousemove", function (event) {
       tooltip
@@ -82,7 +110,9 @@
       d3.select(this)
         .transition()
         .duration(150)
-        .attr("r", d.radius);
+        .attr("r", d.radius)
+        .attr("fill", fillFor(d));
+      label.filter((l) => l === d).attr("opacity", d._lab ? 1 : 0);
     })
     .on("click", (_event, d) => {
       window.location.href = (window.ZETTEL_BASE || "") + "/" + d.id + "/";
@@ -106,17 +136,18 @@
         }),
     );
 
-  // Labels: only show for larger nodes
+  // Labels for every node; only the anchors (_lab) start visible, the rest on hover
   const label = g
     .append("g")
     .selectAll("text")
-    .data(nodes.filter((d) => d.radius >= 6))
+    .data(nodes)
     .join("text")
-    .text((d) => d.title.length > 20 ? d.title.slice(0, 18) + "…" : d.title)
+    .text((d) => d.title.length > 22 ? d.title.slice(0, 20) + "…" : d.title)
     .attr("font-size", 9)
     .attr("dx", (d) => d.radius + 4)
     .attr("dy", 3)
     .attr("fill", "var(--text-muted, #9a968e)")
+    .attr("opacity", (d) => (d._lab ? 1 : 0))
     .attr("pointer-events", "none");
 
   simulation.on("tick", () => {

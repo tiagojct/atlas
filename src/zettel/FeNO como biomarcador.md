@@ -1,0 +1,35 @@
+---
+title: "FeNO como biomarcador"
+date: 2026-06-12
+tags:
+  - biomarcadores
+  - respiratório
+  - diagnóstico
+  - fisiologia-clínica
+draft: false
+maturity: seedling
+aliases:
+  - "FeNO"
+  - "exhaled nitric oxide"
+  - "fractional exhaled nitric oxide"
+related:
+  - "Fisiologia clínica"
+  - "Espirometria"
+  - "eNO.VIS — construir ferramentas como investigação"
+  - "Biomarcadores digitais"
+---
+Fração exalada de óxido nítrico — um biomarcador não invasivo de inflamação tipo 2 das vias aéreas, usado sobretudo na gestão da asma.
+
+## O que mede
+
+A FeNO reflete a inflamação eosinofílica nas vias aéreas. Níveis elevados sugerem inflamação Th2, que responde a corticoides. Níveis baixos argumentam contra asma eosinofílica e podem apontar para diagnósticos alternativos.
+
+## Utilidade clínica
+
+- **Diagnóstico:** apoia (não substitui) a avaliação clínica.
+- **Monitorização do tratamento:** uma FeNO em elevação pode prever a perda de controlo da asma antes de os sintomas surgirem.
+- **Verificação da adesão:** FeNO persistentemente elevada apesar de ICS prescritos sugere má adesão, não má resposta.
+
+## Limitações
+
+A FeNO é sensível mas não perfeitamente específica. Obesidade, tabagismo e estado atópico influenciam os níveis. A interpretação requer contexto clínico — o biomarcador é uma pista, não um veredito.

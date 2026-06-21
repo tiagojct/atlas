@@ -1,0 +1,33 @@
+---
+title: "Luciano Floridi — a infosfera"
+date: 2026-06-12
+tags:
+  - floridi
+  - informação
+  - ética-digital
+  - filosofia-da-informação
+draft: false
+maturity: seedling
+aliases:
+  - "Floridi"
+  - "infosphere"
+  - "philosophy of information"
+related:
+  - "A questão existencial da tecnologia"
+  - "Filosofia da tecnologia"
+  - "Literacia de dados em saúde"
+  - "Registos eletrónicos como dados de investigação"
+---
+Luciano Floridi argumenta que a tecnologia digital transforma não apenas o que fazemos, mas o ambiente no qual a existência humana se desenrola — a **infosfera**.
+
+## A infosfera
+
+Já não nos limitamos a *usar* tecnologias digitais. Cada vez mais *habitamos* um ambiente informacional feito de fluxos de dados, agentes digitais, plataformas, sensores, redes e bases de dados. A distinção entre online e offline dissolve-se — estamos desde sempre na infosfera.
+
+## A quarta revolução
+
+Depois de Copérnico (os humanos não são o centro cósmico), Darwin (os humanos não são biologicamente únicos) e Freud (os humanos não são transparentes para si mesmos), a tecnologia digital traz uma quarta revolução: começamos a compreender-nos como **organismos informacionais** entre outros agentes informacionais.
+
+## E-nvironmentalismo
+
+Floridi propõe um novo quadro ético: não apenas cuidar do ambiente natural, mas cuidar do ambiente informacional — resistir à poluição da informação, proteger a privacidade informacional, projetar para a dignidade informacional.

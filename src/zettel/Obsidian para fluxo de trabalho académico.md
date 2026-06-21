@@ -1,0 +1,29 @@
+---
+title: "Obsidian para fluxo de trabalho académico"
+date: 2026-06-12
+tags:
+  - obsidian
+  - ferramentas-de-pensamento
+  - academia
+  - escrita
+  - zettelkasten
+draft: false
+maturity: seedling
+aliases:
+  - "Obsidian academic"
+related:
+  - "Zettelkasten como parceiro de pensamento"
+---
+O Obsidian é um editor de Markdown local-first, em texto simples, com um ecossistema de plugins que o torna uma ferramenta académica poderosa — não apenas uma aplicação de notas.
+
+## Fluxo de trabalho central
+
+1. **Zettelkasten:** notas atómicas com `[[wikilinks]]` numa pasta plana ou minimamente estruturada.
+2. **Notas diárias:** registos com data e hora de reuniões, ideias, decisões.
+3. **Gestão de referências:** integração Zotero via plugins (Citations, Zotero Integration).
+4. **Escrita longa:** ensaios e artigos residem numa pasta `Writings/`, ligados às notas Zettelkasten para reflexão.
+5. **Publicação:** [[Quartz — publicar a partir de markdown|Quartz]] ou ferramentas semelhantes transformam o vault num site público.
+
+## Por que razão o texto simples importa
+
+Os ficheiros Markdown são à prova de futuro. Podem ser lidos por qualquer editor, versionados com git e processados por qualquer ferramenta. Sem dependência proprietária.

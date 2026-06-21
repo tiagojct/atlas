@@ -16,6 +16,7 @@ export default {
     { text: "Mapa", url: "/mapa/", icon: "ph:graph" },
     { text: "Tags", url: "/tags/", icon: "ph:hash" },
     { text: "Aleatória", url: "/aleatoria/", icon: "ph:shuffle" },
+    { text: "Sobre", url: "/sobre/", icon: "ph:info" },
   ],
 
   social: [

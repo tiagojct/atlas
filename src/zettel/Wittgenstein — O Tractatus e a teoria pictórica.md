@@ -1,0 +1,32 @@
+---
+title: "Wittgenstein — O Tractatus e a teoria pictórica"
+date: 2026-05-24
+tags:
+  - filosofia
+  - linguagem
+  - wittgenstein
+  - ia
+draft: false
+maturity: seedling
+aliases:
+  - "Wittgenstein — The Tractatus and the picture theory"
+  - "Wittgenstein"
+related:
+  - "Wittgenstein — Jogos de linguagem e formas de vida"
+  - "Uma crítica Wittgenstein–Postman da IA"
+---
+A primeira fase do pensamento de Ludwig Wittgenstein, cristalizada no *Tractatus Logico-Philosophicus* (1921).
+
+## Ideia central
+
+**A linguagem funciona como uma «imagem» (ou modelo) da realidade.** Uma proposição com significado deve ser uma representação lógica de um facto possível no mundo. A estrutura da proposição espelha a estrutura do facto — é a chamada **teoria pictórica** da linguagem.
+
+## Implicação para a IA
+
+Os sistemas de IA que operam sobre lógica formal e representação simbólica (a chamada «IA simbólica») ecoam esta visão. O conhecimento é modelado por proposições que representam factos.
+
+## O limite
+
+A frase final do *Tractatus* — «Sobre aquilo de que não se pode falar, deve-se guardar silêncio» (*Wovon man nicht sprechen kann, darüber muss man schweigen*) — estabelece um limite ético e epistémico crucial. Para Wittgenstein, as questões de valor, ética e estética **não pertencem ao domínio do discurso com significado**.
+
+Este «silêncio» é central para a [[Uma crítica Wittgenstein–Postman da IA|crítica da IA]]: a tentação do tecnopólio é formalizar e computar o que reside no domínio do indizível.

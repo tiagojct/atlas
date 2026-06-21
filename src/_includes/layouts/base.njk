@@ -13,6 +13,7 @@
     {% include "partials/footer.njk" %}
   </div>
   {% include "partials/search.njk" %}
+  <script>window.SITE_BASE="{{ '/' | url }}";</script>
   <script src="/assets/js/theme.js" defer></script>
   {% if mermaid %}
   <script type="module">

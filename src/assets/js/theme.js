@@ -97,10 +97,11 @@
     var loaded = false;
     function load() {
       if (loaded) return; loaded = true;
-      var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = '/pagefind/pagefind-ui.css';
+      var base = window.SITE_BASE || '/';
+      var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'pagefind/pagefind-ui.css';
       document.head.appendChild(css);
-      var s = document.createElement('script'); s.src = '/pagefind/pagefind-ui.js';
-      s.onload = function () { new PagefindUI({ element: '#search', showSubResults: true, showImages: false, translations: {
+      var s = document.createElement('script'); s.src = base + 'pagefind/pagefind-ui.js';
+      s.onload = function () { new PagefindUI({ element: '#search', bundlePath: base + 'pagefind/', showSubResults: true, showImages: false, translations: {
         placeholder: 'Pesquisar',
         clear_search: 'Limpar',
         load_more: 'Ver mais resultados',

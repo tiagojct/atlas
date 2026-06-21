@@ -5,8 +5,8 @@
 {%- set isArticle = layout in ["layouts/article.njk", "layouts/project.njk", "layouts/album.njk", "layouts/book.njk"] -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#16110b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1218" media="(prefers-color-scheme: dark)">
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ desc }}">
 <link rel="canonical" href="{{ canonicalUrl or (site.url + page.url) }}">{# op-ed stubs point canonical at the external original #}
@@ -25,8 +25,7 @@
 <link rel="me" href="{{ site.mastodon }}">
 <meta name="fediverse:creator" content="@tiagojct@mastodon.social">
 
-<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/InterVariable.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/IBMPlexMono-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/CommitMono-400.woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/main.css?v={{ assetv }}">
 
 {% if page.url == "/" %}

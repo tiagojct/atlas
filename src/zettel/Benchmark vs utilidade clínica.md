@@ -1,0 +1,35 @@
+---
+title: "Benchmark vs utilidade clínica"
+date: 2026-06-12
+tags:
+  - ia-clínica
+  - avaliação
+  - benchmarks
+  - saúde-digital
+draft: false
+maturity: seedling
+aliases:
+  - "benchmark gap"
+  - "clinical utility gap"
+related:
+  - "Validação externa de modelos de IA clínica"
+  - "Acurácia diagnóstica vs eficácia clínica"
+  - "Cepticismo de benchmark"
+---
+A lacuna entre o desempenho de um modelo em benchmarks curados e o seu benefício real para doentes, clínicos ou sistemas de saúde.
+
+## O problema
+
+- Os benchmarks medem a exatidão num conjunto de dados fixo. A utilidade clínica mede se o modelo altera decisões e melhora resultados.
+- Um modelo pode ser imbatível em todos os benchmarks e ainda assim ser inútil — ou prejudicial — na prática.
+- A história da predição clínica está repleta de modelos que tiveram um desempenho excelente no artigo e nunca foram usados.
+
+## Por que razão a lacuna existe
+
+- Os benchmarks são estáticos; a realidade clínica muda continuamente.
+- Os benchmarks eliminam a ambiguidade; as decisões clínicas são tomadas em contexto de incerteza.
+- Os benchmarks recompensam o sobreajuste ao conjunto de teste, não a robustez.
+
+## O que importa em vez disso
+
+Impacto na decisão, compatibilidade com o fluxo de trabalho, calibração, equidade entre subgrupos e desempenho sustentado ao longo do tempo.

@@ -1,22 +1,33 @@
-// Dados por nota no Atlas. Cada src/zettel/*.md gera uma página em
-// /<id>/ (o domínio é a secção).
+// Dados por nota no Atlas. Cada src/zettel/*.md gera uma página em /<slug>/,
+// onde slug = slugify(nome-do-ficheiro) e o nome do ficheiro É o título.
+import { slugify } from "../../lib/slug.js";
+
 export default {
   layout: "layouts/zettel-note.njk",
   pagefind: true,
   eleventyComputed: {
     maturity: (data) => data.maturity || "seedling",
-    permalink: (data) => (data.draft ? false : `/${data.id}/`),
-    backlinks: (data) => (data.zettel?.backlinksMap || {})[data.id] || [],
+    title: (data) => data.title || data.page.fileSlug,
+    slug: (data) => slugify(data.page.fileSlug),
+    permalink: (data) => (data.draft ? false : `/${slugify(data.page.fileSlug)}/`),
+    backlinks: (data) => (data.zettel?.backlinksMap || {})[slugify(data.page.fileSlug)] || [],
     linkedNotes: (data) => {
       const arr = data.zettel?.notas || [];
-      const current = arr.find((n) => n.id === data.id);
+      const sl = slugify(data.page.fileSlug);
+      const current = arr.find((n) => n.slug === sl);
       if (!current) return [];
+      const seen = new Set();
       return current.links
         .map((lid) => {
           const r = data.zettel?.idMap?.[lid];
-          return r ? arr.find((n) => n.id === r.slug) || null : null;
+          return r ? arr.find((n) => n.slug === r.slug) || null : null;
         })
-        .filter(Boolean);
+        .filter((n) => n && n.slug !== sl && !seen.has(n.slug) && seen.add(n.slug));
+    },
+    externalLinks: (data) => {
+      const arr = data.zettel?.notas || [];
+      const cur = arr.find((n) => n.slug === slugify(data.page.fileSlug));
+      return cur ? cur.externalLinks || [] : [];
     },
   },
 };

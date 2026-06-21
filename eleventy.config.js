@@ -10,20 +10,10 @@ import mdSidenote from "markdown-it-sidenote";
 import Shiki from "@shikijs/markdown-it";
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 import { pequodLight, pequodDark } from "./lib/shiki-pequod.js";
-import { getIconData, iconToSVG, iconToHTML, replaceIDs } from "@iconify/utils";
-import faBrands from "@iconify-json/fa6-brands/icons.json" with { type: "json" };
-import faSolid from "@iconify-json/fa6-solid/icons.json" with { type: "json" };
-import academicons from "@iconify-json/academicons/icons.json" with { type: "json" };
-import ri from "@iconify-json/ri/icons.json" with { type: "json" };
-import ph from "@iconify-json/ph/icons.json" with { type: "json" };
-import simpleIcons from "@iconify-json/simple-icons/icons.json" with { type: "json" };
 import buildStats from "./lib/build-stats.js";
+import { slugify } from "./lib/slug.js";
 
 const CALLOUTS = ["note", "tip", "warning", "important", "caution"];
-const ICON_SETS = {
-  "fa6-brands": faBrands, "fa6-solid": faSolid, ai: academicons,
-  academicons, ri, ph, "simple-icons": simpleIcons,
-};
 
 export default async function (eleventyConfig) {
   // Ignore Obsidian's vault config (the repo IS the vault; src/zettel/ is opened
@@ -149,31 +139,15 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
 
-  // ── Icon shortcode: inline SVG from local Iconify collections (no network) ─
-  eleventyConfig.addShortcode("icon", (name, cls = "icon") => {
-    const [prefix, ...rest] = String(name).split(":");
-    const set = ICON_SETS[prefix];
-    const data = set && getIconData(set, rest.join(":"));
-    if (!data) {
-      console.warn(`[icon] missing: ${name}`);
-      return `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
-    }
-    const rendered = iconToSVG(data, { height: "1em" });
-    const body = replaceIDs(rendered.body);
-    const attrs = { ...rendered.attributes, class: cls, "aria-hidden": "true", focusable: "false" };
-    return iconToHTML(body, attrs);
-  });
-
   // ── Collections ───────────────────────────────────────────────────────────
-  const slugify = (s) => String(s).toLowerCase().normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-");
   eleventyConfig.addFilter("topicSlug", slugify);
 
-  // Zettelkasten (repo-managed notes in src/zettel/, edited as an Obsidian vault)
+  // Zettelkasten (repo-managed notes in src/zettel/, edited as an Obsidian vault).
+  // Notes have no id — the filename is the title; sort by date, newest first.
   const zettelNotes = (api) =>
     api.getFilteredByGlob("src/zettel/*.md")
       .filter((p) => !p.data.draft)
-      .sort((a, b) => String(b.data.id).localeCompare(String(a.data.id)));
+      .sort((a, b) => new Date(b.data.date || 0) - new Date(a.data.date || 0));
   eleventyConfig.addCollection("zettelNotes", zettelNotes);
   eleventyConfig.addCollection("zettelTags", (api) => {
     const map = new Map();
@@ -193,8 +167,9 @@ export default async function (eleventyConfig) {
     const m = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
     return `${dt.getUTCDate()} ${m[dt.getUTCMonth()]} ${dt.getUTCFullYear()}`;
   });
+  // random note: return its url (notes no longer carry an id)
   eleventyConfig.addFilter("randomId", (arr) =>
-    (arr && arr.length ? arr[Math.floor(Math.random() * arr.length)].data.id : ""));
+    (arr && arr.length ? arr[Math.floor(Math.random() * arr.length)].url : "/"));
   eleventyConfig.addFilter("year", (d) => (d ? new Date(d).getFullYear() : ""));
   eleventyConfig.addFilter("head", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
   eleventyConfig.addFilter("readableDate", (d) =>
