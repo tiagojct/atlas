@@ -5,7 +5,7 @@ tags:
   - epistemologia
   - filosofia-da-ciência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Hypothesis"
 related:

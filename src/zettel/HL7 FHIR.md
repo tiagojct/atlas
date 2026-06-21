@@ -7,7 +7,7 @@ tags:
   - normas
   - rse
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "FHIR"
   - "Fast Healthcare Interoperability Resources"

@@ -6,7 +6,7 @@ tags:
   - ciência-clínica
   - diagnóstico
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "clinical physiology"
   - "fisiologia clínica"

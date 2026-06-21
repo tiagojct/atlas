@@ -7,7 +7,7 @@ tags:
   - filosofia-da-tecnologia
   - pluralismo
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Hui"
   - "cosmotechnics"

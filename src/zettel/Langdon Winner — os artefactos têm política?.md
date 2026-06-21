@@ -8,7 +8,7 @@ tags:
   - artefactos
   - design
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Winner"
   - "artefactos têm política"

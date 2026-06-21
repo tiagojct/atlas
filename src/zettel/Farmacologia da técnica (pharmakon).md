@@ -8,7 +8,7 @@ tags:
   - farmacologia
   - pharmakon
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "pharmakon"
   - "farmacologia"

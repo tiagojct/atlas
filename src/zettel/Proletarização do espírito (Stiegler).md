@@ -8,7 +8,7 @@ tags:
   - farmacologia
   - atenção
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "proletarização"
   - "proletarianization"

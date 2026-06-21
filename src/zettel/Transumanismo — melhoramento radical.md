@@ -8,7 +8,7 @@ tags:
   - bostrom
   - crítica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "transhumanism"
   - "enhancement"

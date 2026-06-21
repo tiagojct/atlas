@@ -8,7 +8,7 @@ tags:
   - cansaço
   - transparência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Han"
   - "burnout society"

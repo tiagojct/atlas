@@ -7,7 +7,7 @@ tags:
   - benchmarks
   - epistemologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "benchmark skepticism"
   - "benchmark critique"

@@ -7,7 +7,7 @@ tags:
   - arquivos
   - stiegler
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "technology and memory"
   - "external memory"

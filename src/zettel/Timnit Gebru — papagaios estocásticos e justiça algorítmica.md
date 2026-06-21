@@ -8,7 +8,7 @@ tags:
   - justiça-algorítmica
   - enviesamento
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Gebru"
   - "papagaios estocásticos"

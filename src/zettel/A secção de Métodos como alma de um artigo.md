@@ -7,7 +7,7 @@ tags:
   - publicação
   - ensino
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Methods section"
   - "the importance of methods"

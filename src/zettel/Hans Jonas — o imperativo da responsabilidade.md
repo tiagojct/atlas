@@ -7,7 +7,7 @@ tags:
   - filosofia-da-tecnologia
   - responsabilidade
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Jonas"
   - "imperative of responsibility"

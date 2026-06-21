@@ -7,7 +7,7 @@ tags:
   - web
   - gestão-de-conhecimento
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "digital garden"
 related:

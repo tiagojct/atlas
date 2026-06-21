@@ -7,7 +7,7 @@ tags:
   - academia
   - escrita-científica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "peer review"
 related:

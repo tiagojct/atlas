@@ -7,7 +7,7 @@ tags:
   - colaboração
   - aumentação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "AI collaboration"
   - "human-AI teaming"

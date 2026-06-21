@@ -7,7 +7,7 @@ tags:
   - técnica
   - eficiência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Ellul"
   - "technique"

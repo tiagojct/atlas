@@ -7,7 +7,7 @@ tags:
   - self
   - ser-humano
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "existential question"
   - "technology and being human"

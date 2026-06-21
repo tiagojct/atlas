@@ -7,7 +7,7 @@ tags:
   - filosofia-da-tecnologia
   - poiesis
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "art and technology"
   - "art as saving power"

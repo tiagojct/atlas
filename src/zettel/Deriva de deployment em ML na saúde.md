@@ -7,7 +7,7 @@ tags:
   - monitorização
   - ciência-de-dados
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "drift"
   - "model drift"

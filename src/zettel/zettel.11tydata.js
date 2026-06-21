@@ -1,12 +1,13 @@
 // Dados por nota no Atlas. Cada src/zettel/*.md gera uma página em /<slug>/,
 // onde slug = slugify(nome-do-ficheiro) e o nome do ficheiro É o título.
 import { slugify } from "../../lib/slug.js";
+import { maturity as normMaturity } from "../../lib/maturity.js";
 
 export default {
   layout: "layouts/zettel-note.njk",
   pagefind: true,
   eleventyComputed: {
-    maturity: (data) => data.maturity || "seedling",
+    maturity: (data) => normMaturity(data.maturity),
     title: (data) => data.title || data.page.fileSlug,
     slug: (data) => slugify(data.page.fileSlug),
     permalink: (data) => (data.draft ? false : `/${slugify(data.page.fileSlug)}/`),

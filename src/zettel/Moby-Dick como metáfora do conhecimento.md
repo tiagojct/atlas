@@ -8,7 +8,7 @@ tags:
   - literatura
   - hermenêutica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Moby-Dick metaphor"
   - "Moby-Dick knowledge"

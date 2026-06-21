@@ -7,7 +7,7 @@ tags:
   - filosofia-da-tecnologia
   - mediação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Ihde"
   - "postphenomenology"

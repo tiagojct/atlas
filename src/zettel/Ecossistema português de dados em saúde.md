@@ -8,7 +8,7 @@ tags:
   - política-saúde
   - sns
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Portuguese health data"
   - "SNS data"

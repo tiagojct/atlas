@@ -7,7 +7,7 @@ tags:
   - literacia
   - saúde-digital
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "health data literacy"
   - "data literacy health"

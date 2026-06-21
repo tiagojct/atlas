@@ -8,7 +8,7 @@ tags:
   - qualidade-de-dados
   - dados-do-mundo-real
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "EHR data"
   - "electronic health record data"

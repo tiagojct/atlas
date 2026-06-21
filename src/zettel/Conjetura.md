@@ -6,7 +6,7 @@ tags:
   - lógica
   - matemática
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Conjecture"
 related:

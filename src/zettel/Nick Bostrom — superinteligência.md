@@ -8,7 +8,7 @@ tags:
   - risco-existencial
   - superinteligência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Bostrom"
   - "superinteligência"

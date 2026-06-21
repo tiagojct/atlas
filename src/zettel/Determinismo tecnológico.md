@@ -6,7 +6,7 @@ tags:
   - determinismo
   - sociologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "technological determinism"
 related:

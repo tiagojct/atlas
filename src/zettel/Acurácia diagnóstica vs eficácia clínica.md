@@ -7,7 +7,7 @@ tags:
   - ia-clínica
   - metodologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "accuracy vs effectiveness"
   - "diagnostic accuracy"

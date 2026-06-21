@@ -8,7 +8,7 @@ tags:
   - escrita
   - zettelkasten
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Obsidian academic"
 related:

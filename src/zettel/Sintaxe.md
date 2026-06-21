@@ -4,7 +4,7 @@ date: 2026-06-08
 tags:
   - gramática
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - Syntax
 ---

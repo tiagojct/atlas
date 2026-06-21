@@ -7,7 +7,7 @@ tags:
   - benchmarks
   - saúde-digital
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "benchmark gap"
   - "clinical utility gap"

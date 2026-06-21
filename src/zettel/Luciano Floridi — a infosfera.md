@@ -7,7 +7,7 @@ tags:
   - ética-digital
   - filosofia-da-informação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Floridi"
   - "infosphere"

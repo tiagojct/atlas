@@ -6,7 +6,7 @@ tags:
   - fenomenologia
   - filosofia-da-tecnologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "revealing"
   - "bringing-forth"

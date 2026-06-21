@@ -8,7 +8,7 @@ tags:
   - biopolítica
   - tecnologias-do-self
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Foucault"
   - "poder disciplinar"

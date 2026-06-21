@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import matter from "gray-matter";
 import { slugify } from "../../lib/slug.js";
+import { maturity as normMaturity } from "../../lib/maturity.js";
 
 const NOTAS_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "zettel");
 
@@ -51,7 +52,7 @@ export default function () {
         date: data.date || null,
         tags: Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : [],
         draft: data.draft === true,
-        maturity: data.maturity || "seedling",
+        maturity: normMaturity(data.maturity),
         aliases: Array.isArray(data.aliases) ? data.aliases : data.aliases ? [data.aliases] : [],
         // links = inline [[wikilinks]] + curated `related:` front-matter targets
         links: [...new Set([

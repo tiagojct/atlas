@@ -5,7 +5,7 @@ tags:
   - epistemologia
   - academia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Thesis"
 related:

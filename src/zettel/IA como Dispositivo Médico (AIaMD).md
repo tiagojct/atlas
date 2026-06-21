@@ -8,7 +8,7 @@ tags:
   - eu-mdr
   - política-saúde
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "AIaMD"
   - "SaMD AI"

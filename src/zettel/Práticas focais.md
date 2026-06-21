@@ -7,7 +7,7 @@ tags:
   - práticas
   - sentido
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "focal practices"
   - "focal things"

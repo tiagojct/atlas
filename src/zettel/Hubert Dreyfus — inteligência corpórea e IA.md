@@ -8,7 +8,7 @@ tags:
   - fenomenologia
   - crítica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Dreyfus"
   - "What Computers Can't Do"

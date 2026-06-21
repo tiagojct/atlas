@@ -7,7 +7,7 @@ tags:
   - self
   - cultura-digital
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "attention and technology"
   - "attention economy"

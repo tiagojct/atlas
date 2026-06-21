@@ -8,7 +8,7 @@ tags:
   - capitalismo
   - dados
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Zuboff"
   - "capitalismo de vigilância"

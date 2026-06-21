@@ -7,7 +7,7 @@ tags:
   - biomarcadores
   - sensores
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "digital biomarker"
 related:

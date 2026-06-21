@@ -7,7 +7,7 @@ tags:
   - xai
   - confiança
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "explainability"
   - "XAI clinical"

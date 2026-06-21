@@ -8,7 +8,7 @@ tags:
   - ibn-khaldun
   - automação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "filosofia islâmica da tecnologia"
   - "Ibn Khaldun"

@@ -6,7 +6,7 @@ tags:
   - lógica
   - filosofia-da-ciência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "propositions"
   - "axioms-and-theorems"

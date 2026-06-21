@@ -7,7 +7,7 @@ tags:
   - dispositivos
   - vida-quotidiana
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Borgmann"
   - "device paradigm"

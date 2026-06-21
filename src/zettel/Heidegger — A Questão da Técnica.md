@@ -7,7 +7,7 @@ tags:
   - composição
   - fenomenologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Heidegger technology"
   - "Question Concerning Technology"

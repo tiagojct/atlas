@@ -7,7 +7,7 @@ tags:
   - wittgenstein
   - postman
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "critique-of-ai"
   - "wittgenstein-postman"

@@ -8,7 +8,7 @@ tags:
   - crítica
   - política
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Morozov"
   - "solucionismo"

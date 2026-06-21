@@ -7,7 +7,7 @@ tags:
   - factores-humanos
   - implementação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "workflow integration"
 related:

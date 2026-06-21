@@ -8,7 +8,7 @@ tags:
   - autonomia
   - monopólio-radical
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Illich"
   - "Ivan Illich"

@@ -7,7 +7,7 @@ tags:
   - projeção-de-órgãos
   - extensão
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Kapp"
   - "Ernst Kapp"

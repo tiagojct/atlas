@@ -7,7 +7,7 @@ tags:
   - cts
   - agência
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Latour"
   - "ANT"

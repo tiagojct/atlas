@@ -7,7 +7,7 @@ tags:
   - política
   - condição-humana
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Arendt"
   - "labour work action"

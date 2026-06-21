@@ -8,7 +8,7 @@ tags:
   - design
   - mediação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Verbeek"
   - "moral mediation"

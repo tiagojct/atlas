@@ -7,7 +7,7 @@ tags:
   - memória
   - técnica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Stiegler"
   - "technics and time"

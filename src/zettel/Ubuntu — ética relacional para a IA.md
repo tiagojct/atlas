@@ -8,7 +8,7 @@ tags:
   - relacionalidade
   - áfrica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Ubuntu"
   - "umuntu ngumuntu ngabantu"

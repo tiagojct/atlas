@@ -7,7 +7,7 @@ tags:
   - diagnóstico
   - fisiologia-clínica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "FeNO"
   - "exhaled nitric oxide"

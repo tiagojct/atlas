@@ -6,7 +6,7 @@ tags:
   - composição
   - filosofia-da-tecnologia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Bestand"
   - "standing-reserve"

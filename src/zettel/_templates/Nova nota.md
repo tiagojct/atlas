@@ -1,7 +1,7 @@
 ---
 date: {{date}}
 tags: []
-maturity: seedling
+maturity: 1
 draft: false
 aliases: []
 related: []

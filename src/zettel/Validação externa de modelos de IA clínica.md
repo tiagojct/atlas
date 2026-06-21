@@ -7,7 +7,7 @@ tags:
   - metodologia
   - saúde-digital
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "external validation"
 related:

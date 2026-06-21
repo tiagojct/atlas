@@ -8,7 +8,7 @@ tags:
   - feminismo
   - hibridez
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Haraway"
   - "cyborg"

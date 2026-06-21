@@ -5,7 +5,7 @@ tags:
   - filosofia-da-tecnologia
   - instrumentalismo
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "instrumental view"
   - "neutral technology"

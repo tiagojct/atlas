@@ -6,7 +6,7 @@ tags:
   - fluxo-clínico
   - saúde-digital
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Five Rights of CDSS"
   - "CDSS Five Rights"

@@ -8,7 +8,7 @@ tags:
   - adorno
   - razão-instrumental
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Escola de Frankfurt"
   - "Frankfurt School"

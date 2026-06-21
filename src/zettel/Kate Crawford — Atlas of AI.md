@@ -8,7 +8,7 @@ tags:
   - extração
   - materialidade
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Crawford"
   - "Atlas of AI"

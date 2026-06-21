@@ -8,7 +8,7 @@ tags:
   - individuação
   - objeto-técnico
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Simondon"
   - "modo de existência dos objetos técnicos"

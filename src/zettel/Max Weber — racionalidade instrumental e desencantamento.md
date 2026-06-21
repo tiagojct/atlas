@@ -8,7 +8,7 @@ tags:
   - burocracia
   - desencantamento
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Weber"
   - "Max Weber"

@@ -7,7 +7,7 @@ tags:
   - postman
   - ia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Postman — Media as epistemology"
   - "Postman"

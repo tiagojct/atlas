@@ -7,7 +7,7 @@ tags:
   - wittgenstein
   - ia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "Wittgenstein — Language games and forms of life"
   - "Wittgenstein"

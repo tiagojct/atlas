@@ -8,7 +8,7 @@ tags:
   - extensão
   - amputação
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "McLuhan"
   - "Marshall McLuhan"

@@ -6,7 +6,7 @@ tags:
   - diagnóstico
   - fisiologia-clínica
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "spirometry"
   - "pulmonary function testing"

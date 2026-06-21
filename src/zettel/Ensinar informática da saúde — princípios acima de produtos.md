@@ -7,7 +7,7 @@ tags:
   - educação
   - pedagogia
 draft: false
-maturity: seedling
+maturity: 1
 aliases:
   - "teaching health informatics"
 related:
