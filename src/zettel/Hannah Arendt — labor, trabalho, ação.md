@@ -1,24 +1,24 @@
 ---
-title: "Hannah Arendt — labor, trabalho, ação"
-date: 2026-06-12
+title: Hannah Arendt — labor, trabalho, ação
+date: 2026-06-21
 tags:
   - arendt
   - filosofia-da-tecnologia
   - política
   - condição-humana
 draft: false
-maturity: 1
+maturity: 2
 aliases:
-  - "Arendt"
-  - "labour work action"
-  - "vita activa"
+  - Arendt
+  - labour work action
+  - vita activa
 related:
-  - "Heidegger — A Questão da Técnica"
-  - "Jacques Ellul — a técnica"
-  - "A questão existencial da tecnologia"
-  - "Colaboração humano-IA na saúde"
+  - Heidegger — A Questão da Técnica
+  - Jacques Ellul — a técnica
+  - A questão existencial da tecnologia
+  - Colaboração humano-IA na saúde
 ---
-*A Condição Humana* (1958) de Hannah Arendt distingue três atividades humanas fundamentais, com implicações profundas para a compreensão da tecnologia.
+[A Condição Humana (1958)](https://pt.wikipedia.org/wiki/Hannah_Arendt) de [Hannah Arendt](https://pt.wikipedia.org/wiki/Hannah_Arendt) distingue três atividades humanas fundamentais, com implicações profundas para a compreensão da tecnologia.
 
 ## As três atividades
 
