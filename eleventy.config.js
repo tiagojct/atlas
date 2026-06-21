@@ -20,6 +20,8 @@ export default async function (eleventyConfig) {
   // in Obsidian): don't process it, and don't trigger watch rebuilds on its churn.
   eleventyConfig.ignores.add("**/.obsidian/**");
   eleventyConfig.watchIgnores.add("**/.obsidian/**");
+  // Obsidian note template lives in the vault but must not be published
+  eleventyConfig.ignores.add("src/zettel/_templates/**");
 
   // ── Markdown-it pipeline ──────────────────────────────────────────────────
   const shiki = await Shiki({
