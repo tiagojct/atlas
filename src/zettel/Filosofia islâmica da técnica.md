@@ -23,7 +23,7 @@ A «filosofia islâmica da técnica» não é um campo consolidado, mas sim uma 
 
 ## Ibn Khaldun (1332–1406)
 
-Na *Muqaddimah* (1377), Ibn Khaldun desenvolve uma verdadeira ciência da civilização (*ʿilm al-ʿumrān*) em que os ofícios e as artes técnicas (*ṣināʿa*) ocupam um lugar preciso: florescem com o excedente e a vida sedentária (*ḥaḍara*), são produto e indicador do grau de civilização, e declinam com a ruína das cidades. É uma **teoria sociológica da técnica *avant la lettre***, que liga o desenvolvimento técnico à densidade da cooperação social.
+Na [Muqaddimah](https://en.wikipedia.org/wiki/Muqaddimah) (1377), [Ibn Khaldun](https://en.wikipedia.org/wiki/Ibn_Khaldun) desenvolve uma verdadeira ciência da civilização (*ʿilm al-ʿumrān*) em que os ofícios e as artes técnicas (*ṣināʿa*) ocupam um lugar preciso: florescem com o excedente e a vida sedentária (*ḥaḍara*), são produto e indicador do grau de civilização, e declinam com a ruína das cidades. É uma **teoria sociológica da técnica *avant la lettre***, que liga o desenvolvimento técnico à densidade da cooperação social.
 
 ## Al-Jazari (1136–1206) e os ḥiyal
 
