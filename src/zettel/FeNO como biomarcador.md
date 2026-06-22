@@ -32,4 +32,4 @@ A FeNO reflete a inflamação eosinofílica nas vias aéreas. Níveis elevados s
 
 ## Limitações
 
-A FeNO é sensível mas não perfeitamente específica. Obesidade, tabagismo e estado atópico influenciam os níveis. A interpretação requer contexto clínico — o biomarcador é uma pista, não um veredito.
+A FeNO é sensível mas não muito específica. Obesidade, tabagismo e estado atópico influenciam os níveis. A interpretação requer contexto clínico — o biomarcador é uma pista, não um veredito.

@@ -1,5 +1,5 @@
 ---
-title: "Biomarcadores digitais"
+title: Biomarcadores digitais
 date: 2026-06-12
 tags:
   - saúde-digital
@@ -9,11 +9,10 @@ tags:
 draft: false
 maturity: 1
 aliases:
-  - "digital biomarker"
 related:
-  - "Modelos de avaliação de mHealth"
-  - "Fisiologia clínica"
-  - "FeNO como biomarcador"
+  - Modelos de avaliação de mHealth
+  - Fisiologia clínica
+  - FeNO como biomarcador
 ---
 Medidas fisiológicas ou comportamentais recolhidas de forma contínua e passiva através de dispositivos digitais — smartphones, wearables, sensores ambientais.
 

@@ -1,5 +1,5 @@
 ---
-title: "Cepticismo de benchmark"
+title: Cepticismo de benchmark
 date: 2026-06-12
 tags:
   - ia-clínica
@@ -9,12 +9,10 @@ tags:
 draft: false
 maturity: 1
 aliases:
-  - "benchmark skepticism"
-  - "benchmark critique"
 related:
-  - "Benchmark vs utilidade clínica"
-  - "Validação externa de modelos de IA clínica"
-  - "Acurácia diagnóstica vs eficácia clínica"
+  - Benchmark vs utilidade clínica
+  - Validação externa de modelos de IA clínica
+  - Acurácia diagnóstica vs eficácia clínica
 ---
 Uma posição metodológica: os benchmarks públicos para IA clínica não são medidas neutras de capacidade — são artefactos construídos, com pressupostos, pontos cegos e incentivos perversos.
 

@@ -21,11 +21,11 @@ related:
   - "Herbert Marcuse — o homem unidimensional"
   - "Wittgenstein — Jogos de linguagem e formas de vida"
 ---
-Byung-Chul Han prolonga os temas heideggerianos para a vida digital. Em *A Sociedade do Cansaço* (2010) e *A Sociedade da Transparência* (2012), argumenta que o poder moderno já não funciona principalmente por repressão — exploramo-nos a nós mesmos através da auto-otimização.
+[Byung-Chul Han](https://pt.wikipedia.org/wiki/Byung-Chul_Han) prolonga os temas de [[Heidegger — A Questão da Técnica|Heidegger]] para a vida digital. Em *A Sociedade do Cansaço* (2010) e *A Sociedade da Transparência* (2012), argumenta que o poder moderno já não funciona principalmente por repressão — exploramo-nos a nós mesmos através da auto-otimização.
 
 ## O sujeito do desempenho
 
-O sujeito moderno já não é o sujeito disciplinado e obediente da análise de Foucault. É o **sujeito do desempenho**: sempre a melhorar, a produzir, visível, a comunicar, a comparar, a otimizar. A liberdade torna-se compulsão: *tu podes*, logo *tu deves*.
+O sujeito moderno já não é o sujeito disciplinado e obediente da análise de Foucault. É o **sujeito do desempenho**: sempre a melhorar, a produzir, visível, a comunicar, a comparar, a otimizar. A [[Conceitos de liberdade]] torna-se compulsão: *tu podes*, logo *tu deves*.
 
 ## Intensificação digital
 
