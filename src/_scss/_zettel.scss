@@ -62,14 +62,14 @@
   .zettel-breadcrumb a:hover { color: var(--accent); }
   // note header: title + meta on whitespace, no frame
   .zettel-note-header { margin-bottom: calc(var(--unit) * 4); }
-  .zettel-note-header h1 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 600; letter-spacing: 0; line-height: 1.25; margin: 0 0 calc(var(--unit) * 1.5); }
+  .zettel-note-header h1 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 600; letter-spacing: -.01em; line-height: 1.18; margin: 0 0 calc(var(--unit) * 1.5); font-variation-settings: "opsz" 60, "wght" 600, "SOFT" 0, "WONK" 1; }
   .zettel-note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--unit) * 1.25) calc(var(--unit) * 2); font-family: $mono; font-size: .76rem; color: var(--dim); margin: 0; }
 
   // prose (self-sufficient so notes read well regardless of site prose scope)
   .zettel-note-body { max-width: 42rem; font-size: 1.06rem; line-height: 1.62; }
   .zettel-note-body > :first-child { margin-top: 0; }
-  .zettel-note-body h2 { font-size: 1.3rem; font-weight: 600; margin: calc(var(--unit) * 4) 0 calc(var(--unit) * 1.5); }
-  .zettel-note-body h3 { font-size: 1.1rem; font-weight: 600; margin: calc(var(--unit) * 3) 0 calc(var(--unit) * 1); }
+  .zettel-note-body h2 { font-size: 1.281rem; line-height: 1.2; font-weight: 600; font-variation-settings: "opsz" 32, "wght" 600, "SOFT" 0, "WONK" 0; margin: calc(var(--unit) * 4) 0 calc(var(--unit) * 1.5); }
+  .zettel-note-body h3 { font-size: 1.125rem; line-height: 1.25; font-weight: 600; font-variation-settings: "opsz" 24, "wght" 600, "SOFT" 0, "WONK" 0; margin: calc(var(--unit) * 3) 0 calc(var(--unit) * 1); }
   .zettel-note-body p { margin: 0 0 calc(var(--unit) * 2); }
   .zettel-note-body ul, .zettel-note-body ol { margin: 0 0 calc(var(--unit) * 2); padding-left: 1.4rem; }
   .zettel-note-body li { margin: .25rem 0; }
