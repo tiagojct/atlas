@@ -28,10 +28,16 @@
 @font-face { font-family:"Literata"; src:url("../fonts/Literata-italic.woff2") format("woff2"); font-weight:200 900; font-style:italic; font-display:swap; }
 @font-face { font-family:"Archivo"; src:url("../fonts/Archivo.woff2") format("woff2"); font-weight:100 900; font-stretch:62% 125%; font-style:normal; font-display:swap; }
 @font-face { font-family:"JetBrains Mono"; src:url("../fonts/JetBrainsMono.woff2") format("woff2"); font-weight:100 800; font-style:normal; font-display:swap; }
-$serif:   "Fraunces", Georgia, "Times New Roman", serif;   // display / headings
-$reading: "Literata", Georgia, serif;                       // long-form body
-$sans:    "Archivo", system-ui, Arial, sans-serif;          // interface / UI
-$mono:    "JetBrains Mono", "SF Mono", Menlo, monospace;     // code / labels
+// Metric-matched fallbacks (Try-Works): local face + overrides so the webfont
+// swap does not shift text (no CLS). Generated metrics from the spec.
+@font-face { font-family:"Fraunces fallback"; src:local("Georgia"); size-adjust:114.63%; ascent-override:85.32%; descent-override:22.24%; line-gap-override:0%; }
+@font-face { font-family:"Literata fallback"; src:local("Georgia"); size-adjust:115.81%; ascent-override:101.63%; descent-override:26.59%; line-gap-override:0%; }
+@font-face { font-family:"Archivo fallback"; src:local("Arial"); size-adjust:130.27%; ascent-override:67.4%; descent-override:16.12%; line-gap-override:0%; }
+@font-face { font-family:"JetBrains Mono fallback"; src:local("Courier New"); size-adjust:100.32%; ascent-override:101.68%; descent-override:29.91%; line-gap-override:0%; }
+$serif:   "Fraunces", "Fraunces fallback", Georgia, "Times New Roman", serif;   // display / headings
+$reading: "Literata", "Literata fallback", Georgia, serif;                       // long-form body
+$sans:    "Archivo", "Archivo fallback", system-ui, Arial, sans-serif;          // interface / UI
+$mono:    "JetBrains Mono", "JetBrains Mono fallback", "SF Mono", Menlo, monospace;     // code / labels
 
 // ── Tokens ───────────────────────────────────────────────────────────────
 :root {
@@ -97,6 +103,11 @@ html.dark {
   --link-int:#8fb6bd;               // sea foam — internal wikilinks
   --link-ext:#a487ba;               // dusk — Wikipedia
   --link-www:#5f93b0;               // tide — other external
+}
+// Wide-gamut fire: a richer amber on P3 displays. Outside P3 the sRGB hexes apply.
+@media (color-gamut:p3){
+  :root{ --accent:color(display-p3 0.6072 0.3085 0.0602) }   // True Lamp (light)
+  html.dark{ --accent:color(display-p3 0.7725 0.3891 0.0719) } // Try-Fire (dark)
 }
 @media (prefers-reduced-motion:reduce){ :root{--dur:0ms} *{transition:none!important} }
 
