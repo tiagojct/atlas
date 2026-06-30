@@ -21,7 +21,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.ignores.add("**/.obsidian/**");
   eleventyConfig.watchIgnores.add("**/.obsidian/**");
   // Obsidian note template lives in the vault but must not be published
-  eleventyConfig.ignores.add("src/zettel/_templates/**");
+  eleventyConfig.ignores.add("src/atlas/_templates/**");
 
   // ── Markdown-it pipeline ──────────────────────────────────────────────────
   const shiki = await Shiki({
@@ -134,8 +134,8 @@ export default async function (eleventyConfig) {
   eleventyConfig.addGlobalData("assetv", cssVersion);
 
   // ── Passthrough static assets ─────────────────────────────────────────────
-  if (existsSync("src/zettel/assets")) {
-    eleventyConfig.addPassthroughCopy({ "src/zettel/assets": "assets" });
+  if (existsSync("src/atlas/assets")) {
+    eleventyConfig.addPassthroughCopy({ "src/atlas/assets": "assets" });
   }
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
@@ -144,10 +144,10 @@ export default async function (eleventyConfig) {
   // ── Collections ───────────────────────────────────────────────────────────
   eleventyConfig.addFilter("topicSlug", slugify);
 
-  // Zettelkasten (repo-managed notes in src/zettel/, edited as an Obsidian vault).
+  // Zettelkasten (repo-managed notes in src/atlas/, edited as an Obsidian vault).
   // Notes have no id — the filename is the title; sort by date, newest first.
   const zettelNotes = (api) =>
-    api.getFilteredByGlob("src/zettel/*.md")
+    api.getFilteredByGlob("src/atlas/*.md")
       .filter((p) => !p.data.draft)
       .sort((a, b) => new Date(b.data.date || 0) - new Date(a.data.date || 0));
   eleventyConfig.addCollection("zettelNotes", zettelNotes);

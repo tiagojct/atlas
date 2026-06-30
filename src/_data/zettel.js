@@ -10,7 +10,7 @@ import matter from "gray-matter";
 import { slugify } from "../../lib/slug.js";
 import { maturity as normMaturity } from "../../lib/maturity.js";
 
-const NOTAS_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "zettel");
+const NOTAS_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "atlas");
 
 function extractLinks(body) {
   const links = [];
