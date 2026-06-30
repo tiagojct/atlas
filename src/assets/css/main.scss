@@ -48,7 +48,8 @@ $mono:    "JetBrains Mono", "JetBrains Mono fallback", "SF Mono", Menlo, monospa
   --pad: calc(var(--unit) * 5);
   --gap: calc(var(--unit) * 4);
   --rowgap: calc(var(--unit) * 5);
-  --measure: 42rem;
+  // reading measures (Try-Works): body 68ch is the long-form line length
+  --measure: 68ch; --measure-narrow: 54ch; --measure-wide: 74ch;
   // Try-Works radius scale (sm 2 / md 4 / lg 6 / pill) — soft, not brutalist-zero
   --r-sm: 2px; --r-md: 4px; --r-lg: 6px; --r-pill: 999px;
   --radius: var(--r-md);
@@ -113,7 +114,7 @@ html.dark {
 
 // ── Base ───────────────────────────────────────────────────────────────────
 *,*::before,*::after{box-sizing:border-box}
-html{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;overflow-x:clip}
+html{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;overflow-x:clip;accent-color:var(--accent);scrollbar-color:var(--sea-bright) transparent;scrollbar-width:thin}
 ::selection{background:var(--accent);color:var(--on-accent)}
 body{
   margin:0; max-width:none; padding:0;
@@ -136,6 +137,7 @@ h4{font-size:1.125rem;line-height:1.25;font-variation-settings:"opsz" 24,"wght" 
 h1:first-child,h2:first-child,h3:first-child{margin-top:0}
 p,ul,ol,dl,pre,table,blockquote,figure{margin:0 0 calc(var(--unit)*3)}
 li{margin-bottom:calc(var(--unit)*1)}
+.content li::marker,.sobre li::marker{color:var(--sea-bright)}
 strong,b{font-weight:600}
 em,i{font-style:italic}
 small,.dim{color:var(--dim)}
@@ -144,7 +146,7 @@ small,.dim{color:var(--dim)}
 // mono eyebrow — Try-Works label signature: muted field, a single rare fire bullet
 .eyebrow{font-family:$mono;font-size:.74rem;font-weight:500;text-transform:uppercase;letter-spacing:.16em;color:var(--dim);margin-bottom:calc(var(--unit)*2);display:flex;gap:var(--unit);align-items:center}
 .eyebrow .bullet{width:.5em;height:.5em;border-radius:var(--r-pill);background:var(--accent);display:inline-block}
-.lede{font-size:1.25rem;line-height:1.45;color:var(--dim);margin-bottom:calc(var(--unit)*5);max-width:44rem;text-wrap:pretty}
+.lede{font-size:1.25rem;line-height:1.45;color:var(--dim);margin-bottom:calc(var(--unit)*5);max-width:var(--measure-narrow);text-wrap:pretty}
 
 // ── Links ───────────────────────────────────────────────────────────────────
 // Links rest on the sea (the working colour); the fire appears only on hover —
@@ -394,7 +396,7 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 .talk-header,.talk-meta{display:none}
 
 // ── Sobre / prose page ───────────────────────────────────────────────────────
-.sobre{max-width:44rem}
+.sobre{max-width:var(--measure)}
 .sobre h2{margin-top:calc(var(--unit)*7)}
 .sobre h2:first-child{margin-top:0}
 .sobre ul{padding-left:1.4rem;margin:0 0 calc(var(--unit)*3)}
