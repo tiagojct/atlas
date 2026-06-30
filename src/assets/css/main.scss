@@ -1,20 +1,24 @@
 // ===========================================================================
-//  Atlas — Eleventy theme. Mono/brutalist "index-terminal".
+//  Atlas — Eleventy theme on the Try-Works design system (Moby-Dick ch. 96).
 //
-//  Aesthetic: monospace structural chrome (IBM Plex Mono) over Inter body prose,
-//  high contrast (near-white / near-black), a single amber accent as the only
-//  chroma, hard 1px rules, zero radius, bracketed affordances, tabular numerals.
+//  Ethic (FOUNDATIONS.md): "Look not too long in the face of the fire." The cool
+//  field carries the work — sea (teal) is the working colour, daylight/whale the
+//  ground. The fire (amber, --accent) is the RARE, load-bearing mark: active nav,
+//  focus, selection, the wordmark, the current graph node. Persistent structure
+//  (eyebrows, heads, rules, quotes) stays on the sea or muted, never the fire.
+//
+//  Type roles: Fraunces (display/headings, opsz+SOFT+WONK), Literata (long-form
+//  reading body), Archivo (UI), JetBrains Mono (labels/code). Soft radii (2-6px
+//  + pills), faint borders.
 //
 //  Architecture (2 files):
 //    main.scss     — site-wide: tokens, palette, base, type, masthead/footer,
 //                    links, callouts, tables, code, tags, ledger, search.
 //    _zettel.scss  — Zettelkasten scope (.zettel): notes, badges, graph.
 //
-//  Token system:
-//    --unit (8px), --radius (0), --line (hairline) vs --rule (hard frame),
-//    --dim, --faint, --accent, --on-accent, --measure (prose max-width).
-//    Light/dark swap the palette on html.dark.
-//
+//  Tokens: --unit (8px), radius scale --r-sm/md/lg/pill, --line (faint border),
+//    --dim, --faint, --sea*, --accent (fire, rare), --measure (prose max-width).
+//    Light = True Lamp; html.dark = Try-Fire.
 // ===========================================================================
 
 // ── Fonts (Try-Works: Fraunces display, Literata reading, Archivo UI, JBMono code) ─
@@ -39,7 +43,9 @@ $mono:    "JetBrains Mono", "SF Mono", Menlo, monospace;     // code / labels
   --gap: calc(var(--unit) * 4);
   --rowgap: calc(var(--unit) * 5);
   --measure: 42rem;
-  --radius: 0;
+  // Try-Works radius scale (sm 2 / md 4 / lg 6 / pill) — soft, not brutalist-zero
+  --r-sm: 2px; --r-md: 4px; --r-lg: 6px; --r-pill: 999px;
+  --radius: var(--r-md);
   --ease: cubic-bezier(.4,0,.2,1); --dur: 140ms;
 
   // palette (rsms-ish)
@@ -121,28 +127,31 @@ strong,b{font-weight:600}
 em,i{font-style:italic}
 small,.dim{color:var(--dim)}
 
-.label{font-family:$mono;font-size:.72rem;font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--accent)}
-.eyebrow{font-family:$mono;font-size:.74rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:calc(var(--unit)*2);display:flex;gap:var(--unit);align-items:center}
-.eyebrow .bullet{width:.5em;height:.5em;border-radius:50%;background:var(--accent);display:inline-block}
+.label{font-family:$mono;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--sea-bright)}
+// mono eyebrow — Try-Works label signature: muted field, a single rare fire bullet
+.eyebrow{font-family:$mono;font-size:.74rem;font-weight:500;text-transform:uppercase;letter-spacing:.16em;color:var(--dim);margin-bottom:calc(var(--unit)*2);display:flex;gap:var(--unit);align-items:center}
+.eyebrow .bullet{width:.5em;height:.5em;border-radius:var(--r-pill);background:var(--accent);display:inline-block}
 .lede{font-size:1.25rem;line-height:1.45;color:var(--dim);margin-bottom:calc(var(--unit)*5);max-width:44rem;text-wrap:pretty}
 
 // ── Links ───────────────────────────────────────────────────────────────────
-a{color:var(--accent);text-decoration:none;text-decoration-color:rgba(0,0,0,.001)}
-.content a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em;text-decoration-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+// Links rest on the sea (the working colour); the fire appears only on hover —
+// a single deliberate, rare mark per interaction (FOUNDATIONS: steer by the light)
+a{color:var(--sea-bright);text-decoration:none;text-decoration-color:rgba(0,0,0,.001)}
+.content a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em;text-decoration-color:color-mix(in srgb,var(--sea-bright) 40%,transparent)}
 .content a:hover{text-decoration-color:var(--accent)}
 .content :where(h1,h2,h3,h4) a{color:inherit;text-decoration:none}
-// Zettelkasten wikilinks — accent + dotted underline, no glyph
+// Zettelkasten wikilinks — sea + dotted underline, no glyph; fire only on hover
 .content a.wikilink,
 .zettel-note-body a.wikilink{
-  color:var(--accent);
+  color:var(--link-int);
   text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:1px;text-underline-offset:.18em;
-  text-decoration-color:color-mix(in srgb,var(--accent) 55%,transparent);
+  text-decoration-color:color-mix(in srgb,var(--link-int) 55%,transparent);
   transition:text-decoration-color var(--dur) var(--ease);
 }
 .content a.wikilink:hover,
 .zettel-note-body a.wikilink:hover{text-decoration-color:var(--accent)}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.boxlink{display:block;padding:calc(var(--unit)*1.5) calc(var(--unit)*2);margin-left:calc(var(--unit)*-2);border-radius:0;color:inherit;transition:background var(--dur) var(--ease)}
+.boxlink{display:block;padding:calc(var(--unit)*1.5) calc(var(--unit)*2);margin-left:calc(var(--unit)*-2);border-radius:var(--r-sm);color:inherit;transition:background var(--dur) var(--ease)}
 .boxlink:hover{background:var(--faint)}
 
 // ── Site shell: centred column with a top masthead ──────────────────────────
@@ -186,13 +195,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .content h2,.content h3{font-variation-settings:"opsz" 28}
 .content figure{margin:calc(var(--unit)*4) 0}
 .content figcaption{font-family:$mono;font-size:.74rem;color:var(--dim);margin-top:var(--unit)}
-blockquote{border-left:3px solid var(--accent);padding-left:calc(var(--unit)*2);color:var(--dim);font-size:1.12rem;line-height:1.5;margin:calc(var(--unit)*4) 0}
+blockquote{border-left:3px solid var(--sea-bright);padding-left:calc(var(--unit)*2);color:var(--dim);font-size:1.12rem;line-height:1.5;margin:calc(var(--unit)*4) 0}
 blockquote p:last-child{margin-bottom:0}
 // figures/standalone images bleed right into the sidenote gutter.
 // Direct children of .content only (never images inside an aside/sidenote),
 // and clear floats so a wide image is never laid beside a floated sidenote.
 .content > figure, .content > p:has(> img:only-child){ width:min(50rem, 100%); margin-left:0; clear:both }
-.content > figure img, .content > p > img{ width:100%; border-radius:3px }
+.content > figure img, .content > p > img{ width:100%; border-radius:var(--r-md) }
 .aside-note img, .sidenote img{ width:100% }
 
 // portrait: sits out in the right gutter like a sidenote — monochrome, dimmed,
@@ -213,7 +222,7 @@ blockquote p:last-child{margin-bottom:0}
 
 // press photo on the Info page: modest square, with a download caption
 .content > figure.press-photo{ width:min(60%,16rem); margin:0 0 calc(var(--unit)*3) }
-.content > figure.press-photo img{ width:100%; border-radius:4px }
+.content > figure.press-photo img{ width:100%; border-radius:var(--r-md) }
 .press-photo figcaption{ margin-top:var(--unit); font-size:.85rem }
 .press-photo figcaption a{ display:inline-flex; align-items:center; gap:.4em }
 
@@ -226,8 +235,8 @@ th,td{padding:calc(var(--unit)*1) calc(var(--unit)*2);text-align:left;vertical-a
 thead th{font-weight:600;border-bottom:1px solid var(--line)}
 
 // ── Code (Shiki Pequod, kept) ───────────────────────────────────────────────
-code{font-family:$mono;font-size:.85em;background:var(--faint);padding:.1em .35em;border-radius:0}
-pre{font-family:$mono;font-size:.82rem;line-height:1.55;background:var(--faint);border:0;border-radius:0;padding:calc(var(--unit)*2);overflow-x:auto}
+code{font-family:$mono;font-size:.85em;background:var(--faint);padding:.1em .35em;border-radius:var(--r-sm)}
+pre{font-family:$mono;font-size:.82rem;line-height:1.55;background:var(--faint);border:0;border-radius:var(--r-md);padding:calc(var(--unit)*2);overflow-x:auto}
 pre code{background:none;padding:0}
 // code blocks adopt each page's tint: override Shiki's fixed paper/ink background
 // with the adaptive --faint, keeping the Pequod token colours (swapped in dark).
@@ -237,11 +246,11 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 // ── Sidenotes / asides ──────────────────────────────────────────────────────
 .sidenote,.aside-note{font-size:.85rem;line-height:1.45;color:var(--dim)}
 .sidenote-ref{color:var(--accent);font-weight:500}
-@media (max-width:1199px){ .sidenote,.aside-note{display:block;border-left:2px solid var(--accent);padding-left:calc(var(--unit)*2);margin:calc(var(--unit)*3) 0} }
-@media (min-width:1200px){ .article{position:relative} .article .sidenote,.article .aside-note{float:right;clear:right;width:13rem;margin-right:-15rem;border-top:1px solid var(--accent);padding-top:var(--unit)} }
+@media (max-width:1199px){ .sidenote,.aside-note{display:block;border-left:2px solid var(--sea-bright);padding-left:calc(var(--unit)*2);margin:calc(var(--unit)*3) 0} }
+@media (min-width:1200px){ .article{position:relative} .article .sidenote,.article .aside-note{float:right;clear:right;width:13rem;margin-right:-15rem;border-top:1px solid var(--sea-bright);padding-top:var(--unit)} }
 
 // ── Callouts ────────────────────────────────────────────────────────────────
-.callout{margin:calc(var(--unit)*3) 0;border-left:2px solid var(--accent);background:var(--faint);border-radius:0}
+.callout{margin:calc(var(--unit)*3) 0;border-left:2px solid var(--accent);background:var(--faint);border-radius:var(--r-md)}
 .callout-title{font-family:$mono;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);padding:calc(var(--unit)*2) calc(var(--unit)*3) 0;font-weight:600}
 .callout-body{padding:calc(var(--unit)*1.5) calc(var(--unit)*3) calc(var(--unit)*2.5)}
 .callout-body > :last-child{margin-bottom:0}
@@ -265,8 +274,8 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 .writing-card-title a{color:var(--fg);text-decoration:none;transition:color var(--dur) var(--ease)}
 .writing-card-title a:hover{color:var(--accent)}
 .writing-card-meta{font-family:$mono;font-size:.72rem;color:var(--dim);display:flex;flex-wrap:wrap;align-items:center;gap:calc(var(--unit)*1.5)}
-.writing-card-badge{text-transform:uppercase;letter-spacing:.04em;color:var(--accent);font-size:.68rem}
-.writing-lang{font-family:$mono;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);border:1px solid var(--line);border-radius:99px;padding:.05em .5em;line-height:1.5}
+.writing-card-badge{text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-size:.68rem}
+.writing-lang{font-family:$mono;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);border:1px solid var(--line);border-radius:var(--r-pill);padding:.05em .5em;line-height:1.5}
 .writing-card-desc{font-size:.88rem;line-height:1.5;color:var(--dim);margin:calc(var(--unit)*1) 0 0}
 .writing-card .chips{margin-top:calc(var(--unit)*1.5)}
 
@@ -279,7 +288,7 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 @media (max-width:640px){ .zettel-feed{column-count:1} }
 // full-bleed graph of the whole note system, below the feed
 .grafo-section{margin-top:calc(var(--unit)*8)}
-.grafo-section .grafo-head{font-family:$mono;font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:500;margin:0 0 calc(var(--unit)*3);display:flex;align-items:center;gap:calc(var(--unit)*2)}
+.grafo-section .grafo-head{font-family:$mono;font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;color:var(--dim);font-weight:500;margin:0 0 calc(var(--unit)*3);display:flex;align-items:center;gap:calc(var(--unit)*2)}
 .grafo-section .grafo-head::after{content:"";flex:1;height:1px;background:var(--line)}
 
 // ── Index / archive listing (rsms compact, multi-column) ────────────────────
@@ -308,7 +317,7 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 
 // year-grouped list (Talks): year label in a left rail, items on the right
 .year-group{display:grid;grid-template-columns:5rem 1fr;gap:calc(var(--unit)*1) calc(var(--unit)*4);margin-bottom:calc(var(--unit)*6)}
-.year-head{font-family:$mono;font-size:1.15rem;font-weight:600;color:var(--accent);margin:0;position:sticky;top:calc(var(--unit)*2);align-self:start}
+.year-head{font-family:$mono;font-size:1.15rem;font-weight:600;color:var(--sea-bright);margin:0;position:sticky;top:calc(var(--unit)*2);align-self:start}
 .year-items{min-width:0}
 @media (max-width:560px){ .year-group{grid-template-columns:1fr;gap:var(--unit)} .year-head{position:static} }
 .entry-title{font-size:1.08rem;font-weight:600;line-height:1.4;letter-spacing:.003em;margin:0}
@@ -323,12 +332,12 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 .tag-pill--md{font-size:1.02rem;color:var(--fg)}
 .tag-pill--lg{font-size:1.2rem;font-weight:600;color:var(--fg)}
 .tag-quicknav{display:flex;flex-wrap:wrap;gap:2px;margin:0 0 calc(var(--unit)*5);font-family:$mono;font-size:.78rem;border-bottom:1px solid var(--line);padding-bottom:calc(var(--unit)*1.5)}
-.tag-quicknav a{display:inline-flex;align-items:center;justify-content:center;min-width:1.8em;padding:.35em .5em;color:var(--dim);text-decoration:none;border-radius:3px;transition:all var(--dur) var(--ease)}
+.tag-quicknav a{display:inline-flex;align-items:center;justify-content:center;min-width:1.8em;padding:.35em .5em;color:var(--dim);text-decoration:none;border-radius:var(--r-sm);transition:all var(--dur) var(--ease)}
 .tag-quicknav a:hover,.tag-quicknav a:focus{color:var(--accent);background:var(--faint)}
 .tag-quicknav .dim{display:inline-flex;align-items:center;justify-content:center;min-width:1.8em;padding:.3em .4em;color:var(--line);font-size:.78rem}
 .tag-alpha{margin-top:calc(var(--unit)*2)}
 .tag-section{margin-bottom:calc(var(--unit)*6)}
-.tag-letter{font-family:$mono;font-size:1.4rem;font-weight:600;color:var(--accent);margin:0 0 calc(var(--unit)*1.5);padding-bottom:calc(var(--unit)*.5);border-bottom:2px solid var(--accent);display:inline-block}
+.tag-letter{font-family:$mono;font-size:1.4rem;font-weight:600;color:var(--sea-bright);margin:0 0 calc(var(--unit)*1.5);padding-bottom:calc(var(--unit)*.5);border-bottom:2px solid var(--sea-bright);display:inline-block}
 .tag-group{column-count:4;column-gap:calc(var(--unit)*6)}
 @media (max-width:900px){ .tag-group{column-count:3} }
 @media (max-width:620px){ .tag-group{column-count:2} }
@@ -340,7 +349,7 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 @media (max-width:480px){ .topic-index{column-count:1} }
 .topic-row{display:flex;align-items:center;gap:calc(var(--unit)*1.5);break-inside:avoid;padding:calc(var(--unit)*1) 0;color:var(--fg);text-decoration:none;transition:color var(--dur) var(--ease)}
 .topic-row:hover{color:var(--accent)}
-.topic-heat{width:.6em;height:.6em;border-radius:0;flex:0 0 auto;background:color-mix(in srgb,var(--accent) calc(var(--w,0) * 100%),var(--line))}
+.topic-heat{width:.6em;height:.6em;border-radius:var(--r-sm);flex:0 0 auto;background:color-mix(in srgb,var(--sea-bright) calc(var(--w,0) * 100%),var(--line))}
 .topic-name{flex:1;font-size:.95rem;font-family:$mono}
 .topic-count{font-family:$mono;font-size:.72rem;color:var(--dim);font-variant-numeric:tabular-nums}
 .topic-row:hover .topic-count{color:var(--accent)}
@@ -355,7 +364,7 @@ html.dark .shiki,html.dark .shiki span{color:var(--shiki-dark)!important}
 // ── Search modal ────────────────────────────────────────────────────────────
 .search-modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.5);display:flex;align-items:flex-start;justify-content:center;padding:10vh var(--pad) var(--pad)}
 .search-modal[hidden]{display:none}
-.search-dialog{position:relative;width:100%;max-width:40rem;background:var(--bg);border:1px solid var(--line);border-radius:0;padding:calc(var(--unit)*4);max-height:80vh;overflow:auto}
+.search-dialog{position:relative;width:100%;max-width:40rem;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:calc(var(--unit)*4);max-height:80vh;overflow:auto}
 .search-close{position:absolute;top:calc(var(--unit)*2);right:calc(var(--unit)*2);background:none;border:0;cursor:pointer;color:var(--dim);font-family:$mono;font-size:.78rem;transition:color var(--dur) var(--ease)}
 .search-close:hover{color:var(--accent)}
 .pagefind-ui{--pagefind-ui-primary:var(--accent);--pagefind-ui-text:var(--fg);--pagefind-ui-background:var(--bg);--pagefind-ui-border:var(--line);--pagefind-ui-font:#{$sans}}
