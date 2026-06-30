@@ -2,9 +2,9 @@
 layout: layouts/base.njk
 bodyClass: reading
 ---
-{%- set maturityLabels = {seedling:"esboço",budding:"a crescer",evergreen:"consolidada"} %}
+{%- set maturityLabels = {seedling:"seedling",budding:"budding",evergreen:"evergreen"} %}
 <article class="zettel zettel-note">
-  <nav class="zettel-breadcrumb"><a href="/">&larr; todas as notas</a></nav>
+  <nav class="zettel-breadcrumb"><a href="/">&larr; all notes</a></nav>
 
   <header class="zettel-note-header">
     <h1>{{ title }}</h1>
@@ -28,7 +28,7 @@ bodyClass: reading
   <section class="note-connections" aria-label="Ligações desta nota">
     {% if linkedNotes.length %}
     <div class="note-conn">
-      <h2><span class="conn-dir" aria-hidden="true">&rarr;</span> Liga a</h2>
+      <h2><span class="conn-dir" aria-hidden="true">&rarr;</span> Links to</h2>
       <ul class="zettel-link-list">
         {% for n in linkedNotes %}<li><a href="/{{ n.id }}/">{{ n.title }}</a></li>{% endfor %}
       </ul>
@@ -36,7 +36,7 @@ bodyClass: reading
     {% endif %}
     {% if backlinks.length %}
     <div class="note-conn">
-      <h2><span class="conn-dir" aria-hidden="true">&larr;</span> Ligada por</h2>
+      <h2><span class="conn-dir" aria-hidden="true">&larr;</span> Linked from</h2>
       <ul class="zettel-link-list">
         {% for bl in backlinks %}<li><a href="/{{ bl.id }}/">{{ bl.title }}</a></li>{% endfor %}
       </ul>
@@ -44,7 +44,7 @@ bodyClass: reading
     {% endif %}
     {% if externalLinks.length %}
     <div class="note-conn">
-      <h2>Continuar a explorar</h2>
+      <h2>Keep exploring</h2>
       <ul class="explore-list">
         {% for x in externalLinks %}<li><a href="{{ x.url }}" rel="noopener" target="_blank">{{ x.label }}</a></li>{% endfor %}
       </ul>

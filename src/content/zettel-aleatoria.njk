@@ -1,17 +1,17 @@
 ---
-permalink: /aleatoria/
-lang: pt-PT
+permalink: /random/
+lang: en
 pagefind: false
 eleventyComputed:
   randomId: "{{ collections.zettelNotes | randomId }}"
 ---
 <!doctype html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="refresh" content="0; url={{ randomId }}">
   <link rel="canonical" href="{{ randomId }}">
-  <title>Nota aleatória…</title>
+  <title>Random note…</title>
 </head>
-<body><p>A abrir uma nota aleatória… <a href="{{ randomId }}">continuar</a></p></body>
+<body><p>Opening a random note… <a href="{{ randomId }}">continue</a></p></body>
 </html>

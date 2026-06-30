@@ -2,28 +2,29 @@
 title: "HL7 FHIR"
 date: 2026-06-12
 tags:
-  - interoperabilidade
-  - dados-de-saúde
-  - normas
-  - rse
+  - interoperability
+  - health-data
+  - standards
+  - ehr
 draft: false
 maturity: 1
 aliases:
+  - "HL7 FHIR"
   - "FHIR"
   - "Fast Healthcare Interoperability Resources"
 related:
-  - "Registos eletrónicos como dados de investigação"
-  - "Ensinar informática da saúde — princípios acima de produtos"
-  - "Literacia de dados em saúde"
+  - "Electronic health records as research data"
+  - "Teaching health informatics — principles over products"
+  - "Health data literacy"
 ---
-O padrão moderno para troca de dados de saúde. FHIR (Fast Healthcare Interoperability Resources) é uma especificação de API RESTful da HL7 que estrutura dados clínicos como **resources** modulares — Patient, Observation, Condition, MedicationRequest, etc.
+The modern standard for exchanging health data. FHIR (Fast Healthcare Interoperability Resources) is an HL7 RESTful API specification that structures clinical data as modular **resources** — Patient, Observation, Condition, MedicationRequest, and so on.
 
-## Por que razão o FHIR é importante
+## Why FHIR matters
 
-- **REST + JSON:** acessível a qualquer programador, não apenas a especialistas HL7.
-- **Resources granulares:** solicita-se o que é necessário (um único resultado laboratorial, não todo o processo clínico).
-- **Profiling:** perfis nacionais e institucionais (ex.: US Core, IPS) definem quais os campos obrigatórios, quais as terminologias a utilizar.
+- **REST + JSON:** accessible to any developer, not only HL7 specialists.
+- **Granular resources:** you request what you need (a single lab result, not the whole record).
+- **Profiling:** national and institutional profiles (e.g. US Core, IPS) define which fields are mandatory and which terminologies to use.
 
-## A realidade
+## The reality
 
-A adoção do FHIR está a acelerar, mas é desigual. Muitos hospitais expõem APIs FHIR incompletas, mal documentadas ou apenas de leitura. O padrão é uma condição necessária para a interoperabilidade, não uma condição suficiente.
+FHIR adoption is accelerating, but uneven. Many hospitals expose incomplete, poorly documented, or read-only FHIR APIs. The standard is a necessary condition for interoperability, not a sufficient one.

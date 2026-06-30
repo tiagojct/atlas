@@ -23,7 +23,7 @@
     <p class="entry-meta">
       <span class="entry-date">{{ p.date | isoDate }}</span>
       {%- if p.data.favorite %}<span class="fav-star" title="Favorito" aria-label="Favorito">&starf;</span>{% endif %}
-      {%- if badge %}{%- set typeLabels = {note:"Nota",essay:"Ensaio",oped:"Op-ed",blog:"Post",post:"Post",album:"Álbum",book:"Livro",movie:"Filme",project:"Projeto",keynote:"Keynote",workshop:"Workshop",talk:"Palestra",invited:"Convidada",seedling:"Esboço",budding:"A crescer",evergreen:"Consolidada"} -%}<span class="entry-type">{{ typeLabels[(p.data.maturity or ptype) | lower] or (p.data.talktype or p.data.type or p.data.maturity) }}</span>{% endif %}
+      {%- if badge %}{%- set typeLabels = {note:"Nota",essay:"Ensaio",oped:"Op-ed",blog:"Post",post:"Post",album:"Álbum",book:"Livro",movie:"Filme",project:"Projeto",keynote:"Keynote",workshop:"Workshop",talk:"Palestra",invited:"Convidada",seedling:"Seedling",budding:"Budding",evergreen:"Evergreen"} -%}<span class="entry-type">{{ typeLabels[(p.data.maturity or ptype) | lower] or (p.data.talktype or p.data.type or p.data.maturity) }}</span>{% endif %}
       {%- if not compact and p.data.venue %}<span class="entry-venue">{{ p.data.venue }}{% if p.data.location %} &middot; {{ p.data.location }}{% endif %}</span>{% endif %}
     </p>
     {%- if not compact and p.data.description %}<p class="entry-desc">{{ p.data.description | truncate(130) }}</p>{% endif %}

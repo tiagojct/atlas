@@ -1,38 +1,38 @@
 ---
 layout: layouts/base.njk
 permalink: /
-lang: pt-PT
+lang: en
 title: "Atlas"
-description: "Um caderno público: notas atómicas que se ligam entre si, cultivadas ao longo do tempo."
+description: "A public notebook: atomic notes that link to one another, cultivated over time."
 pagefind: false
 ---
 {% import "partials/ledger.njk" as ledger %}
 <header class="page-header">
   <h1 class="title">Atlas</h1>
-  <p class="lede">Um caderno público: {{ collections.zettelNotes.length }} notas atómicas que se ligam entre si. Segue o <a href="/mapa/">mapa</a>, as <a href="/tags/">tags</a>, ou começa pelas notas centrais. <a href="/sobre/">Sobre este jardim &rarr;</a></p>
+  <p class="lede">A public notebook: {{ collections.zettelNotes.length }} atomic notes that link to one another. Follow the <a href="/map/">map</a>, the <a href="/tags/">tags</a>, or start from the central notes. <a href="/about/">About this garden &rarr;</a></p>
 </header>
 
 <div class="zettel">
 
-  <section class="grafo-hero" aria-label="Mapa de todas as notas">
-    <p class="section-eyebrow">Mapa</p>
+  <section class="grafo-hero" aria-label="Map of all notes">
+    <p class="section-eyebrow">Map</p>
     <div class="grafo-canvas">
       <svg id="grafo-svg"></svg>
       <div id="grafo-tooltip" class="grafo-tooltip" aria-hidden="true"></div>
     </div>
     <div class="grafo-foot">
       {% include "partials/grafo-legend.njk" %}
-      <a class="grafo-fulllink" href="/mapa/">Mapa em página inteira &rarr;</a>
+      <a class="grafo-fulllink" href="/map/">Full-page map &rarr;</a>
     </div>
   </section>
 
   {%- set central = zettelGrafo.nodes | sort(true, false, "score") | head(4) %}
   {%- if central.length and central[0].score > 0 %}
-  <section class="home-start" aria-label="Por onde começar">
-    <p class="section-eyebrow">Por onde começar</p>
+  <section class="home-start" aria-label="Where to start">
+    <p class="section-eyebrow">Where to start</p>
     <ul class="start-grid">
       {%- for n in central %}
-      <li><a href="/{{ n.id }}/" class="start-link">{{ n.title }}</a><span class="start-deg">{{ n.score }} ligações</span></li>
+      <li><a href="/{{ n.id }}/" class="start-link">{{ n.title }}</a><span class="start-deg">{{ n.score }} links</span></li>
       {%- endfor %}
     </ul>
   </section>
@@ -48,7 +48,7 @@ pagefind: false
       {%- for t in topTags %}
       <a href="/tags/{{ t.tag }}/" class="tag" style="font-size:{{ (0.8 + (t.count / maxCount) * 0.45) | round(2) }}rem"><span class="tag-name">{{ t.tag }}</span><span class="tag-count">{{ t.count }}</span></a>
       {%- endfor %}
-      {%- if tagsByCount.length > 18 %}<a href="/tags/" class="tag tag-more">+{{ tagsByCount.length - 18 }} mais &rarr;</a>{% endif %}
+      {%- if tagsByCount.length > 18 %}<a href="/tags/" class="tag tag-more">+{{ tagsByCount.length - 18 }} more &rarr;</a>{% endif %}
     </div>
   </section>
   {% endif %}
@@ -62,21 +62,21 @@ pagefind: false
   {%- set everS = ever | sort(true, false, "date") %}
   {%- set budS = bud | sort(true, false, "date") %}
   {%- set seedS = seed | sort(true, false, "date") %}
-  <section class="home-all" aria-label="Todas as notas">
-    <p class="section-eyebrow">Todas as notas</p>
+  <section class="home-all" aria-label="All notes">
+    <p class="section-eyebrow">All notes</p>
 
     {%- if everS.length %}
-    <h3 class="feed-head feed-head--evergreen">Consolidadas <span class="feed-count">{{ everS.length }}</span></h3>
+    <h3 class="feed-head feed-head--evergreen">Evergreen <span class="feed-count">{{ everS.length }}</span></h3>
     <div class="zettel-feed">{% for n in everS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
     {%- endif %}
 
     {%- if budS.length %}
-    <h3 class="feed-head feed-head--budding">A crescer <span class="feed-count">{{ budS.length }}</span></h3>
+    <h3 class="feed-head feed-head--budding">Budding <span class="feed-count">{{ budS.length }}</span></h3>
     <div class="zettel-feed">{% for n in budS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
     {%- endif %}
 
     {%- if seedS.length %}
-    <h3 class="feed-head feed-head--seedling">Esboços <span class="feed-count">{{ seedS.length }}</span></h3>
+    <h3 class="feed-head feed-head--seedling">Seedlings <span class="feed-count">{{ seedS.length }}</span></h3>
     <div class="zettel-feed">{% for n in seedS %}{{ ledger.row(n, false, true) }}{% endfor %}</div>
     {%- endif %}
   </section>

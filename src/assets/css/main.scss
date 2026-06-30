@@ -17,13 +17,17 @@
 //
 // ===========================================================================
 
-// ── Fonts ────────────────────────────────────────────────────────────────
-@font-face { font-family:"Commit Mono"; src:url("../fonts/CommitMono-400.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face { font-family:"Commit Mono"; src:url("../fonts/CommitMono-400-italic.woff2") format("woff2"); font-weight:400; font-style:italic; font-display:swap; }
-@font-face { font-family:"Commit Mono"; src:url("../fonts/CommitMono-600.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
-// full-mono: one face for everything (body, headings, chrome)
-$mono: "Commit Mono", "SF Mono", Menlo, monospace;
-$sans: $mono;
+// ── Fonts (Try-Works: Fraunces display, Literata reading, Archivo UI, JBMono code) ─
+@font-face { font-family:"Fraunces"; src:url("../fonts/Fraunces.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:swap; }
+@font-face { font-family:"Fraunces"; src:url("../fonts/Fraunces-italic.woff2") format("woff2"); font-weight:100 900; font-style:italic; font-display:swap; }
+@font-face { font-family:"Literata"; src:url("../fonts/Literata.woff2") format("woff2"); font-weight:200 900; font-style:normal; font-display:swap; }
+@font-face { font-family:"Literata"; src:url("../fonts/Literata-italic.woff2") format("woff2"); font-weight:200 900; font-style:italic; font-display:swap; }
+@font-face { font-family:"Archivo"; src:url("../fonts/Archivo.woff2") format("woff2"); font-weight:100 900; font-stretch:62% 125%; font-style:normal; font-display:swap; }
+@font-face { font-family:"JetBrains Mono"; src:url("../fonts/JetBrainsMono.woff2") format("woff2"); font-weight:100 800; font-style:normal; font-display:swap; }
+$serif:   "Fraunces", Georgia, "Times New Roman", serif;   // display / headings
+$reading: "Literata", Georgia, serif;                       // long-form body
+$sans:    "Archivo", system-ui, Arial, sans-serif;          // interface / UI
+$mono:    "JetBrains Mono", "SF Mono", Menlo, monospace;     // code / labels
 
 // ── Tokens ───────────────────────────────────────────────────────────────
 :root {
@@ -34,9 +38,9 @@ $sans: $mono;
   --pad: calc(var(--unit) * 5);
   --gap: calc(var(--unit) * 4);
   --rowgap: calc(var(--unit) * 5);
-  --measure: 36rem;   // mono runs wider — fewer chars per line
+  --measure: 42rem;
   --radius: 0;
-  --ease: cubic-bezier(.4,0,.2,1); --dur: 90ms;
+  --ease: cubic-bezier(.4,0,.2,1); --dur: 140ms;
 
   // palette (rsms-ish)
   --red:#f03009; --orange:#ff7105; --ocean:#008f5d; --green:#12c05b;
@@ -48,18 +52,22 @@ $sans: $mono;
   --t-album:#0891b2; --t-book:#a16207; --t-movie:#7c3aed;
   --t-seedling:#7a9a2e; --t-budding:#b07d12; --t-evergreen:#1f7a4d;
 
-  // single Atlas palette — cool near-white paper, ink-blue accent
-  --bg:#f6f7f8;
-  --fg-rgb:26,28,33;
+  // Try-Works "True Lamp" (light): cold field, fire is the rare mark
+  --bg:#dee7e4;                     // bone
+  --surface:#e7efeb;
+  --surface-raised:#f2f7f4;
+  --fg-rgb:24,39,43;                // ink
   --fg:rgb(var(--fg-rgb));
-  --dim:rgba(var(--fg-rgb),.58);
+  --dim:#52646a;                    // text-muted
   --faint:rgba(var(--fg-rgb),.05);
-  --line:rgba(var(--fg-rgb),.14);   // faint hairline, used sparingly
-  --accent:#2a3a6b;                 // ink-blue — internal links
-  --on-accent:#fff;
-  --link-ext:#2f6a6b;               // teal — Wikipedia links
-  --link-www:#6a5da0;               // violet — other external (web) links
-  --font-body:#{$sans};
+  --line:#c4d2cd;                   // border
+  --accent:#9e5017;                 // fire — the rare mark (active nav, focus, current node)
+  --on-accent:#eef3f0;
+  --sea:#264852; --sea-bright:#3d6b76; --sea-pale:#b4ccc9; --on-sea:#eef3f0;
+  --link-int:#26535e;               // sea — internal wikilinks (the working colour)
+  --link-ext:#6b4a86;               // dusk — Wikipedia links
+  --link-www:#3f6f8e;               // tide — other external (web) links
+  --font-body:#{$reading};
 
   // inline link glyphs (gwern-style), drawn in currentColor via mask-image
   --ico-graph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M200%20152a31.84%2031.84%200%200%200-19.53%206.68l-23.11-18A31.65%2031.65%200%200%200%20160%20128c0-.74%200-1.48-.08-2.21l13.23-4.41A32%2032%200%201%200%20168%20104c0%20.74%200%201.48.08%202.21l-13.23%204.41A32%2032%200%200%200%20128%2096a32.6%2032.6%200%200%200-5.27.44L115.89%2081A32%2032%200%201%200%2096%2088a32.6%2032.6%200%200%200%205.27-.44l6.84%2015.4a31.92%2031.92%200%200%200-8.57%2039.64l-25.71%2022.84a32.06%2032.06%200%201%200%2010.63%2012l25.71-22.84a31.91%2031.91%200%200%200%2037.36-1.24l23.11%2018A31.65%2031.65%200%200%200%20168%20184a32%2032%200%201%200%2032-32m0-64a16%2016%200%201%201-16%2016a16%2016%200%200%201%2016-16M80%2056a16%2016%200%201%201%2016%2016a16%2016%200%200%201-16-16M56%20208a16%2016%200%201%201%2016-16a16%2016%200%200%201-16%2016m56-80a16%2016%200%201%201%2016%2016a16%2016%200%200%201-16-16m88%2072a16%2016%200%201%201%2016-16a16%2016%200%200%201-16%2016%22%2F%3E%3C%2Fsvg%3E");
@@ -67,21 +75,22 @@ $sans: $mono;
   --ico-globe:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M128%2024a104%20104%200%201%200%20104%20104A104.12%20104.12%200%200%200%20128%2024m87.62%2096h-39.83c-1.79-36.51-15.85-62.33-27.38-77.6a88.19%2088.19%200%200%201%2067.22%2077.6ZM96.23%20136h63.54c-2.31%2041.61-22.23%2067.11-31.77%2077c-9.55-9.9-29.46-35.4-31.77-77m0-16c2.31-41.61%2022.23-67.11%2031.77-77c9.55%209.93%2029.46%2035.43%2031.77%2077Zm11.36-77.6C96.06%2057.67%2082%2083.49%2080.21%20120H40.37a88.19%2088.19%200%200%201%2067.22-77.6M40.37%20136h39.84c1.82%2036.51%2015.85%2062.33%2027.38%2077.6A88.19%2088.19%200%200%201%2040.37%20136m108%2077.6c11.53-15.27%2025.56-41.09%2027.38-77.6h39.84a88.19%2088.19%200%200%201-67.18%2077.6Z%22%2F%3E%3C%2Fsvg%3E");
 }
 
-// Dark mode: single Atlas palette (amber on deep brown).
+// Try-Works "Try-Fire" (dark): the fire on the cold field.
 html.dark {
-  --fg-rgb:231,233,238;
+  --bg:#12161b;                     // pitch
+  --surface:#1b2127;
+  --surface-raised:#232b32;
+  --fg-rgb:241,239,233;             // whale
   --fg:rgb(var(--fg-rgb));
-  --dim:rgba(var(--fg-rgb),.55); --faint:rgba(var(--fg-rgb),.05); --line:rgba(var(--fg-rgb),.16);
-  --bg:#0f1218;
-  --accent:#9fb0e6;
-  --on-accent:#11141f;
-  --link-ext:#6fb0b3;
-  --link-www:#a99fd6;
-  // lighter marker hues for dark mode (glyph stays var(--bg) = dark)
-  --t-note:#3fb6c4; --t-essay:#a78bfa; --t-oped:#e0a13b; --t-keynote:#fb7185;
-  --t-workshop:#4ade80; --t-talk:#60a5fa; --t-project:#818cf8; --t-topic:#94a3b8; --t-blog:#fb923c;
-  --t-album:#22d3ee; --t-book:#d4a72c; --t-movie:#a78bfa;
-  --t-seedling:#a3c853; --t-budding:#e0b34a; --t-evergreen:#54c79a;
+  --dim:#97a0a4;                    // gull
+  --faint:rgba(var(--fg-rgb),.05);
+  --line:#2c3640;
+  --accent:#c9651d;                 // ember
+  --on-accent:#11151a;
+  --sea:#2c4953; --sea-bright:#4d7680; --sea-pale:#8fb6bd; --on-sea:#0f1c22;
+  --link-int:#8fb6bd;               // sea foam — internal wikilinks
+  --link-ext:#a487ba;               // dusk — Wikipedia
+  --link-www:#5f93b0;               // tide — other external
 }
 @media (prefers-reduced-motion:reduce){ :root{--dur:0ms} *{transition:none!important} }
 
@@ -92,19 +101,19 @@ html{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoot
 body{
   margin:0; max-width:none; padding:0;
   background:var(--bg); color:var(--fg);
-  font-family:var(--font-body); font-size:var(--fs); line-height:var(--lh);
-  font-feature-settings:"calt","kern";
+  font-family:var(--font-body); font-size:var(--fs); line-height:1.62;
+  font-feature-settings:"kern" 1,"liga" 1,"onum" 1,"pnum" 1;
+  font-variation-settings:"opsz" 12;
 }
 img{max-width:100%;height:auto;display:block}
-hr{border:0;height:2px;background:var(--fg);opacity:.9;margin:calc(var(--unit)*5) 0}
+hr{border:0;height:1px;background:var(--line);margin:calc(var(--unit)*5) 0}
 
-// ── Type ───────────────────────────────────────────────────────────────────
-// mono headings — structural, no optical sizing, no negative tracking
-h1,h2,h3,h4{font-family:#{$mono};font-weight:600;line-height:1.25;letter-spacing:0;margin:calc(var(--unit)*5) 0 calc(var(--unit)*2)}
-h1{font-size:2rem}
-h2{font-size:1.3rem;margin-top:calc(var(--unit)*6)}
-h3{font-size:1.05rem}
-h4{font-size:.92rem}
+// ── Type — Fraunces serif headings, Literata reading body ────────────────────
+h1,h2,h3,h4{font-family:#{$serif};font-weight:600;line-height:1.12;letter-spacing:-.012em;margin:calc(var(--unit)*5) 0 calc(var(--unit)*2);font-variation-settings:"opsz" 60,"SOFT" 0,"WONK" 1;text-wrap:balance}
+h1{font-size:2.6rem;font-variation-settings:"opsz" 96,"SOFT" 18,"WONK" 1}
+h2{font-size:1.65rem;margin-top:calc(var(--unit)*6)}
+h3{font-size:1.3rem}
+h4{font-size:1.08rem}
 h1:first-child,h2:first-child,h3:first-child{margin-top:0}
 p,ul,ol,dl,pre,table,blockquote,figure{margin:0 0 calc(var(--unit)*3)}
 li{margin-bottom:calc(var(--unit)*1)}
@@ -149,7 +158,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 // The navbar font is constant on every page ($sans) — only colour + the active
 // marker change; it must NOT inherit the per-section body font.
 .masthead-sections{display:flex;flex-wrap:wrap;align-items:center;gap:calc(var(--unit)*1) calc(var(--unit)*3.5);min-width:0;font-family:$mono}
-.masthead .wordmark{font-size:1.15rem;font-family:$mono}
+.masthead .wordmark{font-size:1.4rem;font-family:#{$serif};font-weight:600;font-variation-settings:"opsz" 40,"SOFT" 0,"WONK" 1}
 // subnav: constant mono, bracketed like a terminal menu — [ mapa ] [ tags ] …
 .masthead-subnav{display:flex;flex-wrap:wrap;gap:calc(var(--unit)*1) calc(var(--unit)*2.5);margin-top:calc(var(--unit)*1.5);font-family:$mono;font-size:.76rem;letter-spacing:.02em;font-variant-numeric:tabular-nums}
 .masthead-subnav a{color:var(--dim);text-decoration:none;white-space:nowrap;transition:color var(--dur) var(--ease)}
@@ -162,12 +171,12 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .txt-btn:hover{color:var(--accent)}
 
 // Wordmark — mono with a block-cursor mark
-.wordmark{display:inline-flex;align-items:center;gap:.5ch;font-weight:600;font-size:1.05rem;letter-spacing:0;color:var(--fg);text-decoration:none;text-transform:none;font-family:#{$mono}}
+.wordmark{display:inline-flex;align-items:center;gap:.5ch;font-weight:600;font-size:1.05rem;letter-spacing:0;color:var(--fg);text-decoration:none;text-transform:none;font-family:#{$serif}}
 .wordmark .bullet{width:.5em;height:1em;border-radius:0;background:var(--accent)}
 
 // ── Page header ─────────────────────────────────────────────────────────────
 .page-header{margin-bottom:calc(var(--unit)*5)}
-.page-header .title{font-size:2rem;letter-spacing:0;margin:0 0 calc(var(--unit)*2)}
+.page-header .title{font-family:#{$serif};font-size:clamp(2.4rem,5vw,3.4rem);font-weight:580;letter-spacing:-.02em;line-height:1.0;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;margin:0 0 calc(var(--unit)*3)}
 .page-header .lede{margin-bottom:0}
 
 // ── Article (offset reading column within the coloured page) ────────────────

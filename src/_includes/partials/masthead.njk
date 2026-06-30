@@ -4,11 +4,11 @@
       <a class="wordmark" href="/" aria-label="Atlas"><span class="bullet" aria-hidden="true"></span><span>Atlas</span></a>
     </nav>
     <div class="masthead-tools">
-      <button id="search-toggle" class="txt-btn" aria-label="Pesquisar">pesquisar</button>
-      <button id="theme-toggle" class="txt-btn" aria-label="Alternar modo claro/escuro">tema</button>
+      <button id="search-toggle" class="txt-btn" aria-label="Search">search</button>
+      <button id="theme-toggle" class="txt-btn" aria-label="Toggle light/dark">theme</button>
     </div>
   </div>
-  <nav class="masthead-subnav" aria-label="Navegação">
+  <nav class="masthead-subnav" aria-label="Navigation">
     {%- for c in site.nav %}
     <a href="{{ c.url }}"{% if page.url == c.url %} aria-current="page"{% endif %}>{{ c.text }}</a>
     {%- endfor %}

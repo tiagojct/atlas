@@ -102,17 +102,17 @@
       document.head.appendChild(css);
       var s = document.createElement('script'); s.src = base + 'pagefind/pagefind-ui.js';
       s.onload = function () { new PagefindUI({ element: '#search', bundlePath: base + 'pagefind/', showSubResults: true, showImages: false, translations: {
-        placeholder: 'Pesquisar',
-        clear_search: 'Limpar',
-        load_more: 'Ver mais resultados',
-        search_label: 'Pesquisar neste site',
-        filters_label: 'Filtros',
-        zero_results: 'Sem resultados para [SEARCH_TERM]',
-        many_results: '[COUNT] resultados para [SEARCH_TERM]',
-        one_result: '[COUNT] resultado para [SEARCH_TERM]',
-        alt_search: 'Sem resultados para [SEARCH_TERM]. A mostrar resultados para [DIFFERENT_TERM]',
-        search_suggestion: 'Sem resultados para [SEARCH_TERM]. Tenta uma destas pesquisas:',
-        searching: 'A pesquisar [SEARCH_TERM]...'
+        placeholder: 'Search',
+        clear_search: 'Clear',
+        load_more: 'Load more results',
+        search_label: 'Search this site',
+        filters_label: 'Filters',
+        zero_results: 'No results for [SEARCH_TERM]',
+        many_results: '[COUNT] results for [SEARCH_TERM]',
+        one_result: '[COUNT] result for [SEARCH_TERM]',
+        alt_search: 'No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead',
+        search_suggestion: 'No results for [SEARCH_TERM]. Try one of these searches:',
+        searching: 'Searching for [SEARCH_TERM]...'
       } }); };
       document.body.appendChild(s);
     }

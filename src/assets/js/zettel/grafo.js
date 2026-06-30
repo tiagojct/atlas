@@ -9,7 +9,7 @@
   const svg = d3.select("#grafo-svg");
   const tooltip = d3.select("#grafo-tooltip");
 
-  const maturityPt = { seedling: "esboço", budding: "a crescer", evergreen: "consolidada" };
+  const maturityPt = { seedling: "seedling", budding: "budding", evergreen: "evergreen" };
 
   const container = svg.node().parentNode;
   const width = container.clientWidth;

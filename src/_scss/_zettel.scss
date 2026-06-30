@@ -48,7 +48,7 @@
   // ── note page ─────────────────────────────────────────────────────────────
   &.zettel-note { max-width: none; }
   // body + a sticky graph rail right beside it (left-aligned, not pushed to the edge)
-  .note-grid { display: grid; grid-template-columns: minmax(0, 52rem) 19rem; gap: calc(var(--unit) * 6); align-items: start; margin-top: calc(var(--unit) * 4); }
+  .note-grid { display: grid; grid-template-columns: minmax(0, 44rem) 19rem; gap: calc(var(--unit) * 7); align-items: start; margin-top: calc(var(--unit) * 4); }
   .note-main { min-width: 0; }
   .note-side { min-width: 0; position: sticky; top: calc(var(--unit) * 3); }
   @media (max-width: 860px) { .note-grid { grid-template-columns: 1fr; } .note-side { position: static; max-width: 22rem; } }
@@ -66,14 +66,14 @@
   .zettel-note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--unit) * 1.25) calc(var(--unit) * 2); font-family: $mono; font-size: .76rem; color: var(--dim); margin: 0; }
 
   // prose (self-sufficient so notes read well regardless of site prose scope)
-  .zettel-note-body { max-width: 54rem; font-size: .95rem; line-height: 1.75; }
+  .zettel-note-body { max-width: 42rem; font-size: 1.06rem; line-height: 1.62; }
   .zettel-note-body > :first-child { margin-top: 0; }
   .zettel-note-body h2 { font-size: 1.3rem; font-weight: 600; margin: calc(var(--unit) * 4) 0 calc(var(--unit) * 1.5); }
   .zettel-note-body h3 { font-size: 1.1rem; font-weight: 600; margin: calc(var(--unit) * 3) 0 calc(var(--unit) * 1); }
   .zettel-note-body p { margin: 0 0 calc(var(--unit) * 2); }
   .zettel-note-body ul, .zettel-note-body ol { margin: 0 0 calc(var(--unit) * 2); padding-left: 1.4rem; }
   .zettel-note-body li { margin: .25rem 0; }
-  .zettel-note-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .zettel-note-body a { color: var(--link-int); text-decoration: underline; text-underline-offset: 2px; }
   .zettel-note-body code { font-family: $mono; font-size: .88em; background: var(--faint); padding: .12em .35em; border-radius: 0; }
   .zettel-note-body pre { background: var(--bg-alt); padding: calc(var(--unit) * 2); border-radius: 0; overflow-x: auto; margin: 0 0 calc(var(--unit) * 2); }
   .zettel-note-body pre code { background: none; padding: 0; }
@@ -88,8 +88,8 @@
   .zettel-link-list { list-style: none; margin: 0; padding: 0; }
   .zettel-link-list li { margin: 0 0 calc(var(--unit) * .75); }
   // very subtle pill, echoing the body links
-  .zettel-link-list a { display: inline-block; padding: .1em .42em .1em .34em; border-radius: 3px; color: var(--fg); text-decoration: none; line-height: 1.35; background: color-mix(in srgb, var(--accent) 6%, transparent); transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
-  .zettel-link-list a:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+  .zettel-link-list a { display: inline-block; padding: .1em .42em .1em .34em; border-radius: 3px; color: var(--fg); text-decoration: none; line-height: 1.35; background: color-mix(in srgb, var(--link-int) 8%, transparent); transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .zettel-link-list a:hover { background: color-mix(in srgb, var(--link-int) 16%, transparent); color: var(--link-int); }
 
   .mini-grafo { width: 100%; height: 440px; background: color-mix(in srgb, var(--fg) 2.5%, var(--bg)); border-radius: 0; }
   .mini-grafo svg { width: 100%; height: 100%; }
@@ -104,7 +104,7 @@
   .explore-list li { margin: 0 0 calc(var(--unit) * 1.25); line-height: 1.35; }
   .explore-list a { display: inline-block; padding: .1em .42em .1em .34em; border-radius: 3px; color: var(--fg); text-decoration: none; background: color-mix(in srgb, var(--link-ext) 6%, transparent); transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
   .explore-list a:hover { background: color-mix(in srgb, var(--link-ext) 14%, transparent); color: var(--link-ext); }
-  .zettel-link-list a::before { @extend %glyph; margin-right: .35em; background: var(--accent);
+  .zettel-link-list a::before { @extend %glyph; margin-right: .35em; background: var(--link-int);
     -webkit-mask-image: var(--ico-graph); mask-image: var(--ico-graph); }
   .explore-list a[href*="wikipedia.org"]::before { @extend %glyph; margin-right: .35em; background: var(--link-ext);
     -webkit-mask-image: var(--ico-wiki); mask-image: var(--ico-wiki); }
@@ -114,13 +114,13 @@
   .zettel-note-body a.wikilink,
   .zettel-note-body a[href*="wikipedia.org"] {
     text-decoration: none; border-radius: 3px; padding: .12em .42em .12em .34em; }
-  .zettel-note-body a.wikilink { color: var(--accent); background: color-mix(in srgb, var(--accent) 13%, transparent); }
+  .zettel-note-body a.wikilink { color: var(--link-int); background: color-mix(in srgb, var(--link-int) 13%, transparent); }
   .zettel-note-body a[href*="wikipedia.org"] { color: var(--link-ext); background: color-mix(in srgb, var(--link-ext) 13%, transparent); }
-  .zettel-note-body a.wikilink:hover { background: color-mix(in srgb, var(--accent) 24%, transparent); }
+  .zettel-note-body a.wikilink:hover { background: color-mix(in srgb, var(--link-int) 24%, transparent); }
   .zettel-note-body a[href*="wikipedia.org"]:hover { background: color-mix(in srgb, var(--link-ext) 24%, transparent); }
   .zettel-note-body a.wikilink::before,
   .zettel-note-body a[href*="wikipedia.org"]::before { @extend %glyph; margin-right: .22em; }
-  .zettel-note-body a.wikilink::before { background: var(--accent); -webkit-mask-image: var(--ico-graph); mask-image: var(--ico-graph); }
+  .zettel-note-body a.wikilink::before { background: var(--link-int); -webkit-mask-image: var(--ico-graph); mask-image: var(--ico-graph); }
   .zettel-note-body a[href*="wikipedia.org"]::before { background: var(--link-ext); -webkit-mask-image: var(--ico-wiki); mask-image: var(--ico-wiki); }
   // generic external (non-Wikipedia): plain teal + ↗
   .zettel-note-body a[href^="http"]:not([href*="wikipedia.org"]) { color: var(--link-www); background: color-mix(in srgb, var(--link-www) 13%, transparent); border-radius: 3px; padding: .12em .42em .12em .34em; text-decoration: none; }

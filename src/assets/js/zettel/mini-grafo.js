@@ -21,7 +21,7 @@
   if (nodes.length < 2) {
     // Only the center, no connections — show a message
     container.innerHTML =
-      '<p style="text-align:center;color:var(--text-muted);padding-top:90px;font-size:0.85rem">Nota isolada — sem ligações ainda.</p>';
+      '<p style="text-align:center;color:var(--text-muted);padding-top:90px;font-size:0.85rem">Isolated note — no links yet.</p>';
     return;
   }
 

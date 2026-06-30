@@ -3,17 +3,17 @@ layout: layouts/base.njk
 permalink: /tags/
 pagefind: false
 title: "Tags"
-description: "As tags que atravessam o Atlas — todas as notas atómicas por tema."
+description: "The tags that run across the Atlas — every atomic note by theme."
 ---
 <header class="page-header">
   <h1 class="title">Tags</h1>
-  <p class="lede">As tags que atravessam o Atlas. Segue uma para ver as notas que partilham um tema. <a href="/">Todas as notas</a></p>
+  <p class="lede">The tags that run across the Atlas. Follow one to see the notes that share a theme. <a href="/">All notes</a></p>
 </header>
 
 {%- set byCount = collections.zettelTags | sort(true, false, "count") %}
 {%- if byCount.length %}
   {%- set maxCount = byCount[0].count %}
-  <nav class="tag-cloud" aria-label="Nuvem de tags">
+  <nav class="tag-cloud" aria-label="Tag cloud">
     {%- for t in byCount %}
     {%- set ratio = t.count / maxCount %}
     <a class="tag-pill{% if ratio > 0.5 %} tag-pill--lg{% elif ratio > 0.2 %} tag-pill--md{% endif %}" href="/tags/{{ t.tag }}/">{{ t.tag }}{% if ratio > 0.3 %} <span style="opacity:.45;font-size:.75em">{{ t.count }}</span>{% endif %}</a>
@@ -21,7 +21,7 @@ description: "As tags que atravessam o Atlas — todas as notas atómicas por te
   </nav>
 
   {%- set groups = collections.zettelTags | groupByLetterZettel %}
-  <nav class="tag-quicknav" aria-label="Salto rápido">
+  <nav class="tag-quicknav" aria-label="Quick jump">
     {%- for g in groups %}<a href="#tag-{{ g.letter }}">{{ g.letter }}</a>{%- endfor %}
   </nav>
 
@@ -42,5 +42,5 @@ description: "As tags que atravessam o Atlas — todas as notas atómicas por te
     {%- endfor %}
   </div>
 {%- else %}
-  <p class="empty-state">Ainda sem tags.</p>
+  <p class="empty-state">No tags yet.</p>
 {%- endif %}
